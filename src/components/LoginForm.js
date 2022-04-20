@@ -135,9 +135,10 @@ export default function LoginForm() {
                         alignContent="center"
                         justifyContent={"center"}
                     >
-                        <Avatar className={classes.loginAvatar}>
+                        {/* <Avatar className={classes.loginAvatar}>
                             <PersonIcon />
-                        </Avatar>
+                        </Avatar> */}
+                        <img alt="brand-logo" src={LogoSrc} />
                         <Paper className={classes.main}>
                             <form
                                 className={classes.form}
@@ -261,4 +262,3 @@ export default function LoginForm() {
     );
 }
 
-{/* <img alt="brand-logo" src={LogoSrc} /> */}

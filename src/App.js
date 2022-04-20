@@ -5,7 +5,7 @@ import Settings from "./views/Settings"
 import StoreProvider from './store/StoreProvider';
 import {useSelector} from "react-redux";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { StyledEngineProvider } from '@mui/material/styles';
+//import { StyledEngineProvider } from '@material-ui/material/styles';
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/scss/styles.scss';
 
