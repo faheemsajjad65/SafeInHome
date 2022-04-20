@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LoginIcon from '@mui/icons-material/Login';
 import Container from '@mui/material/Container';
+import LogoSrc from "../assets/images/logo.svg";
 
 export default function LoginForm() {
 
@@ -31,9 +32,10 @@ export default function LoginForm() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <img alt="brand-logo" src={LogoSrc} />
+                    {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LoginIcon />
-                    </Avatar>
+                    </Avatar> */}
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -112,6 +114,7 @@ export default function LoginForm() {
                             variant="contained"
                             sx={{ mt: 5, mb: 5 }}
                             size="large"
+                            className="btn-brand"
                         >
                             login
                         </Button>
