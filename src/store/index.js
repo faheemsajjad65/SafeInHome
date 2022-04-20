@@ -3,6 +3,8 @@ import thunk from "redux-thunk";
 import AuthReducer from "../reducers/auth";
 import SettingReducer from "../reducers/settings";
 import logger from 'redux-logger';
+import CarePlanReducer from '../reducers/carePlan'
+import ClientReducer from '../reducers/client'
 
 export default function configureStore() {
     let middlewares = [];
@@ -14,7 +16,9 @@ export default function configureStore() {
 
     const mainReducer = combineReducers({
         auth: AuthReducer,
-        settings: SettingReducer
+        settings: SettingReducer,
+        carePlan: CarePlanReducer,
+        clients: ClientReducer
     })
 
     const rootReducer = (state, action) => {

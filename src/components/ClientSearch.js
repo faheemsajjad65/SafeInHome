@@ -1,14 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getClients } from '../actions/client'
 
-export default function CarePlanWizardSearch() {
+export default function ClientSearch() {
+
     const {register , handleSubmit} = useForm();
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleSearchForm = (formData) => {
-        // dispatch(getAllCarePlans(formData))
+        dispatch(getClients(formData))
     }
 
     return (

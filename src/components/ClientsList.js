@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-export default function CarePlansList() {
-  
-  const carePlans = useSelector((state) => state.carePlans)
+export default function ClientsList() {
+
+  const clientsList = useSelector((state) => state.clients);
   
   return (
     <table className="table table-dark">
@@ -17,7 +17,7 @@ export default function CarePlansList() {
         </thead>
         <tbody>
           {
-            carePlans.map( client => 
+            clientsList.map( client => 
               <tr>
                 <td>1</td>
                 <td>Mark</td>

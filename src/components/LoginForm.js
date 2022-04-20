@@ -86,9 +86,7 @@ export default function LoginForm() {
             return;
         }
         return window.history.push("/");
-    },
-    []
-);
+    },[]);
 
     useEffect(() => {
         if (!isLoggedIn) return;
