@@ -2,6 +2,9 @@ import React from 'react';
 import {HashRouter as Router,Routes,Route,} from 'react-router-dom';
 import Welcome from "./views/Welcome"
 import Settings from "./views/Settings"
+import { StyledEngineProvider } from '@mui/material/styles';
+import 'bootstrap/dist/css/bootstrap.css';
+import './assets/scss/styles.scss';
 
 function SihWizard (){
   return (
@@ -17,7 +20,9 @@ function SihWizard (){
 
 function App() {
   return (
-    <SihWizard/>
+    <StyledEngineProvider injectFirst>
+      <SihWizard/>
+    </StyledEngineProvider>
   );
 }
 
