@@ -1,7 +1,12 @@
 import React from 'react';
+import CarePlanWizardSearch from "../components/CarePlanWizardSearch"
+import CarePlansList from "../components/CarePlansList"
 
 export default function CarePlanWizard(){
     return (
-        <h1>Care Plan Wizard</h1>
+        <>
+            <CarePlanWizardSearch />
+            <CarePlansList />
+        </>
     )
 }
