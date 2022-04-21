@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = process.env.BASE_URL + "api/auth/";
 
 const login = (username, password) => {
     return axios
@@ -21,6 +21,7 @@ const logout = () => {
     localStorage.removeItem("user");
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     login,
     logout,

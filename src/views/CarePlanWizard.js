@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import ClientSearch from "../components/ClientSearch"
+import CarePlansList from "../components/CarePlansList"
+import ClientsList from "../components/ClientsList"
+import { useDispatch } from 'react-redux';
+import { getCarePlans } from '../actions/carePlan'
+import { useSelector } from 'react-redux';
 
 export default function CarePlanWizard(){
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCarePlans())
+    },[dispatch])
+
+    const carePlans = useSelector((state) => state.carePlans);
+
     return (
-        <h1>Care Plan Wizard</h1>
+        <>
+            <ClientSearch />
+            { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList /> } 
+        </>
     )
 }
