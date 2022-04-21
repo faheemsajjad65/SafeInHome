@@ -19,6 +19,11 @@ body {
 }
 
 //MUI Overrides
+
+.MuiButton-containedSizeLarge {
+  padding: 19px 22px;
+}
+
 .MuiInputLabel-root {
   color: rgba(229, 229, 229, 0.38);
 }
@@ -26,3 +31,4 @@ body {
 .MuiOutlinedInput-notchedOutline {
   border-color: rgba(209, 210, 211, 0.22);
 }
+

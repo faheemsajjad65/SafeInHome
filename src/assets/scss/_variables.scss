@@ -18,3 +18,8 @@ $primary-05: lighten-alpha($primary, 0.05);
 $onPrimary:  #ffffff !default;
 
 $brand: #85276B;
+$primaryColor: #85276B;
+
+:export {
+    primary: $primaryColor;
+}
