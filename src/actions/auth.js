@@ -6,6 +6,7 @@ import {
 } from "../types";
 
 import AuthService from "../services/auth.service";
+import {updateLoginAttempts} from "../actions/loginAttempts";
 
 export const login = (username, password) => (dispatch) => {
     return AuthService.login(username, password).then(
@@ -33,6 +34,7 @@ export const login = (username, password) => (dispatch) => {
                 type: SET_ERROR_MESSAGE,
                 payload: message,
             });
+            dispatch(updateLoginAttempts())
 
             return Promise.reject();
         }

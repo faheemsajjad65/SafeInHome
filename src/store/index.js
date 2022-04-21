@@ -2,7 +2,12 @@ import {createStore, applyMiddleware, combineReducers, compose} from "redux";
 import thunk from "redux-thunk";
 import AuthReducer from "../reducers/auth";
 import SettingReducer from "../reducers/settings";
-import logger from 'redux-logger';
+import LoginAttemptsReducer from "../reducers/loginAttempts";
+import {createLogger} from 'redux-logger';
+
+const logger = createLogger({
+    collapsed:true
+});
 
 export default function configureStore() {
     let middlewares = [];
@@ -14,7 +19,8 @@ export default function configureStore() {
 
     const mainReducer = combineReducers({
         auth: AuthReducer,
-        settings: SettingReducer
+        settings: SettingReducer,
+        loginAttempts: LoginAttemptsReducer
     })
 
     const rootReducer = (state, action) => {
