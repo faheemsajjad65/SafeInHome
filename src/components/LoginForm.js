@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +15,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import {login} from "../actions/auth";
-import {LinearProgress} from "@material-ui/core";
+import {setLoginAttemptsTimer} from "../actions/loginAttempts";
+import {LinearProgress, Typography} from "@material-ui/core";
 
 function getProgressBarProps(hasError) {
     return {
@@ -66,9 +68,13 @@ const useStyles = makeStyles((theme) =>
 export default function LoginForm() {
     const { isLoggedIn } = useSelector(state => state.auth);
     const { isDarkMode }  = useSelector((state) => state.settings);
+    const {loginAttemptsCount,isRetryLoginBlocked} = useSelector(state=> state.loginAttempts);
+
     const [hasLoginPending, setHasLoginPending] = useState(false);
     const [loginError, setLoginError] = useState(null);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const classes = useStyles();
     const {
         register,
@@ -78,6 +84,11 @@ export default function LoginForm() {
 
     const inputVariant = (isDarkMode ? "filled" : "outlined");
 
+    useEffect(()=>{
+        if(loginAttemptsCount>=3) dispatch(setLoginAttemptsTimer());
+    },[loginAttemptsCount])
+
+
     const handleLoginSuccess = useCallback(
         (res) => {
         setHasLoginPending(false);
@@ -85,7 +96,7 @@ export default function LoginForm() {
             setLoginError(res);
             return;
         }
-        return window.history.push("/");
+        return navigate("/wizard");
     },[]);
 
     useEffect(() => {
@@ -102,12 +113,14 @@ export default function LoginForm() {
 
     const handleFormSubmit = (data) => {
         // console.log("submitted data ",data)
-        setLoginError(null);
-        setHasLoginPending(true);
-        dispatch(login(data.username, data.password)).then(
-            handleLoginSuccess,
-            handleLoginFail
-        );
+        if(!isRetryLoginBlocked){
+            setLoginError(null);
+            setHasLoginPending(true);
+            dispatch(login(data.username, data.password)).then(
+                handleLoginSuccess,
+                handleLoginFail
+            );
+        }
     };
 
     return (
@@ -248,6 +261,23 @@ export default function LoginForm() {
                                                 Forgot password?
                                             </Link>
                                         </Grid>
+                                    </Grid>
+                                    <Grid
+                                        container
+                                        alignItems={"center"}
+                                    >
+                                        {
+                                            isRetryLoginBlocked && (
+                                                <Typography
+                                                    color={"error"}
+                                                    component={"h6"}
+                                                    variant={"h6"}
+                                                >
+                                                    Please retry login after 15 minutes or contact your administrator
+                                                </Typography>
+                                            )
+                                        }
+
                                     </Grid>
                                 </Grid>
                             </form>

@@ -2,9 +2,14 @@ import {createStore, applyMiddleware, combineReducers, compose} from "redux";
 import thunk from "redux-thunk";
 import AuthReducer from "../reducers/auth";
 import SettingReducer from "../reducers/settings";
-import logger from 'redux-logger';
 import CarePlanReducer from '../reducers/carePlan'
 import ClientReducer from '../reducers/client'
+import LoginAttemptsReducer from "../reducers/loginAttempts";
+import {createLogger} from 'redux-logger';
+
+const logger = createLogger({
+    collapsed:true
+});
 
 export default function configureStore() {
     let middlewares = [];
@@ -18,7 +23,8 @@ export default function configureStore() {
         auth: AuthReducer,
         settings: SettingReducer,
         carePlan: CarePlanReducer,
-        clients: ClientReducer
+        clients: ClientReducer,
+        loginAttempts: LoginAttemptsReducer
     })
 
     const rootReducer = (state, action) => {
