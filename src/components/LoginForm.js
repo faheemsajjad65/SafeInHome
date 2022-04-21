@@ -11,6 +11,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Container from '@material-ui/core/Container';
 import PersonIcon from '@material-ui/icons/Person';
+import LogoSrc from "../assets/images/logo.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -147,9 +148,10 @@ export default function LoginForm() {
                         alignContent="center"
                         justifyContent={"center"}
                     >
-                        <Avatar className={classes.loginAvatar}>
+                        {/* <Avatar className={classes.loginAvatar}>
                             <PersonIcon />
-                        </Avatar>
+                        </Avatar> */}
+                        <img alt="brand-logo" src={LogoSrc} />
                         <Paper className={classes.main}>
                             <form
                                 className={classes.form}
@@ -289,3 +291,4 @@ export default function LoginForm() {
             </Container>
     );
 }
+

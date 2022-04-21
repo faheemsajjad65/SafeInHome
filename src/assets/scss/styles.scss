@@ -1,0 +1,28 @@
+// Import Custom Variables
+@import "variables.scss";
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap.scss";
+
+// Import Custom SCSS
+//@import "ssi-icons.scss";
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #121015 !important;
+  color: rgba(229, 229, 229, 0.38);
+}
+
+.btn-brand {
+ background-color: $brand;
+}
+
+//MUI Overrides
+.MuiInputLabel-root {
+  color: rgba(229, 229, 229, 0.38);
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(209, 210, 211, 0.22);
+}

@@ -1,0 +1,20 @@
+// Import Bootstrap variables for use within theme
+// @import "bootstrap/scss/functions.scss";
+// @import "bootstrap/scss/variables.scss";
+@import "./mixins.scss";
+
+//Custom Variables
+$primary:    #22252A;
+$primary-90: lighten-alpha($primary, 0.9);
+$primary-80: lighten-alpha($primary, 0.8);
+$primary-70: lighten-alpha($primary, 0.7);
+$primary-60: lighten-alpha($primary, 0.6);
+$primary-50: lighten-alpha($primary, 0.5);
+$primary-40: lighten-alpha($primary, 0.4);
+$primary-30: lighten-alpha($primary, 0.3);
+$primary-20: lighten-alpha($primary, 0.2);
+$primary-10: lighten-alpha($primary, 0.1);
+$primary-05: lighten-alpha($primary, 0.05);
+$onPrimary:  #ffffff !default;
+
+$brand: #85276B;
