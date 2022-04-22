@@ -1,7 +1,10 @@
+import React from 'react'
+import { withBaseLayout } from '../layouts/Base'
 
-const Settings = () =>{
+function Settings() {
     return(
         <div>settings</div>
     )
 }
-export default Settings;
+
+export default withBaseLayout(Settings)

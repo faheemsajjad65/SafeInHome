@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react'
-import CarePlanWizard from './CarePlanWizard'
+import React from 'react'
+import Wizard from './Wizard'
+import { withBaseLayout } from '../layouts/Base'
 
-export default function Home() {
+function Home() {
 
-
-    // useEffect(()=> {
-    //     return <CarePlanWizard />
-    // })
-
-
-    // adding top bar and main menu
     return (
-        <div>Home</div>
+        <Wizard />
     )
 }
+
+
+export default withBaseLayout(Home)
