@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
+//import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -7,9 +7,8 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Container from '@material-ui/core/Container';
-import PersonIcon from '@material-ui/icons/Person';
+import LogoSrc from "../assets/images/logo.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -42,13 +41,16 @@ const useStyles = makeStyles((theme) =>
             width: "100%",
         },
         btnSubmit: {
-            margin: theme.spacing(3, 0, 0),
+            margin: theme.spacing(3, 0, 5),
+            padding: theme.spacing(2.4, 0),
+            fontSize: "14px"
         },
         forgotLinksWrap: {
-            margin: theme.spacing(3, 0, 0),
+           //marginBottom: theme.spacing(2),
         },
         forgotLink: {
-            margin: theme.spacing(1, 0, 0),
+            display: "inline-block",
+            marginBottom: theme.spacing(2),
             cursor: "pointer"
         },
         progressBar: {
@@ -59,6 +61,9 @@ const useStyles = makeStyles((theme) =>
         },
         authContainer: {
             marginTop: theme.spacing(3),
+        },
+        logo: {
+            marginBottom: theme.spacing(7.5),
         },
     })
 );
@@ -132,126 +137,127 @@ export default function LoginForm() {
                         alignContent="center"
                         justifyContent={"center"}
                     >
-                        <Avatar className={classes.loginAvatar}>
+                        {/* <Avatar className={classes.loginAvatar}>
                             <PersonIcon />
-                        </Avatar>
-                        <Paper className={classes.main}>
-                            <form
-                                className={classes.form}
-                                noValidate
-                                onSubmit={rhfHandleSubmit(handleFormSubmit)}
-                            >
-                                <Grid container direction="row" spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField
+                        </Avatar> */}
+                        <img className={classes.logo} alt="brand-logo" src={LogoSrc} />
+                        
+                        <form
+                            className={classes.form}
+                            noValidate
+                            onSubmit={rhfHandleSubmit(handleFormSubmit)}
+                        >
+                            <Grid container direction="row" spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        {
+                                        ...register(
+                                            'username',
                                             {
-                                            ...register(
-                                                'username',
-                                                {
-                                                    required: "Username is required.",
-                                                    minLength: {
-                                                        value: 3,
-                                                        message: "Username length at least 3 digits"
-                                                    }
-                                                })
-                                             }
-                                            disabled={hasLoginPending}
-                                            aria-disabled={hasLoginPending}
-                                            margin="normal"
-                                            fullWidth
-                                            id="username"
-                                            label="Username"
-                                            name="username"
-                                            autoComplete="username"
-                                            autoFocus
-                                            variant={inputVariant}
-                                            placeholder="Enter Username"
-                                            InputLabelProps={{ shrink: true }}
-                                            inputProps={{
-                                                sx: {
-                                                    "&::placeholder": {
-                                                        color: "inherit"
-                                                    }
+                                                required: "Username is required.",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Username length at least 3 digits"
                                                 }
-                                            }}
-                                            sx={{
-                                                "& .MuiOutlinedInput-root": {
-                                                    color: "inherit"
-                                                }
-                                            }}
-                                            error={!!errors?.username}
-                                            helperText={`${errors?.username ? errors.username.message : ""}`}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            {
-                                                ...register(
-                                                    'password',
-                                                    {
-                                                        required: "Password is required.",
-                                                    })
+                                            })
                                             }
-                                            disabled={hasLoginPending}
-                                            aria-disabled={hasLoginPending}
-                                            margin="normal"
-                                            fullWidth
-                                            name="password"
-                                            label="Password"
-                                            type="password"
-                                            id="password"
-                                            autoComplete="current-password"
-                                            variant={inputVariant}
-                                            placeholder="Enter Password"
-                                            InputLabelProps={{ shrink: true }}
-                                            inputProps={{
-                                                sx: {
-                                                    "&::placeholder": {
-                                                        color: "inherit"
-                                                    }
-                                                }
-                                            }}
-                                            sx={{
-                                                "& .MuiOutlinedInput-root": {
+                                        disabled={hasLoginPending}
+                                        aria-disabled={hasLoginPending}
+                                        margin="normal"
+                                        fullWidth
+                                        id="username"
+                                        label="Username"
+                                        name="username"
+                                        autoComplete="username"
+                                        autoFocus
+                                        variant={inputVariant}
+                                        placeholder="Enter Username"
+                                        InputLabelProps={{ shrink: true }}
+                                        inputProps={{
+                                            sx: {
+                                                "&::placeholder": {
                                                     color: "inherit"
                                                 }
-                                            }}
-                                            error={!!errors?.password}
-                                            helperText={`${errors?.password ? errors.password.message : ""}`}
-                                        />
-                                    </Grid>
-                                    <Button
-                                        aria-disabled={hasLoginPending}
-                                        className={classes.btnSubmit}
-                                        color="primary"
+                                            }
+                                        }}
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                color: "inherit"
+                                            }
+                                        }}
+                                        error={!!errors?.username}
+                                        helperText={`${errors?.username ? errors.username.message : ""}`}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        {
+                                            ...register(
+                                                'password',
+                                                {
+                                                    required: "Password is required.",
+                                                })
+                                        }
                                         disabled={hasLoginPending}
+                                        aria-disabled={hasLoginPending}
+                                        margin="normal"
                                         fullWidth
-                                        size="large"
-                                        type="submit"
-                                        variant="contained"
-                                    >
-                                        Login
-                                    </Button>
-                                    <Grid
-                                        className={classes.forgotLinksWrap}
-                                        container
-                                        direction={"column"}
-                                        alignItems={"center"}
-                                    >
-                                        <Grid item>
-                                            <Link to={"/"} className={classes.forgotLink}>
-                                                Forgot username?
-                                            </Link>
-                                        </Grid>
-                                        <Grid item>
-                                            <Link to={"/"} className={classes.forgotLink}>
-                                                Forgot password?
-                                            </Link>
-                                        </Grid>
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                        variant={inputVariant}
+                                        placeholder="Enter Password"
+                                        InputLabelProps={{ shrink: true }}
+                                        inputProps={{
+                                            sx: {
+                                                "&::placeholder": {
+                                                    color: "inherit"
+                                                }
+                                            }
+                                        }}
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                color: "inherit"
+                                            }
+                                        }}
+                                        error={!!errors?.password}
+                                        helperText={`${errors?.password ? errors.password.message : ""}`}
+                                    />
+                                </Grid>
+                                <Button
+                                    aria-disabled={hasLoginPending}
+                                    className={`${classes.btnSubmit} btn-brand`}
+                                    color="primary"
+                                    disabled={hasLoginPending}
+                                    fullWidth
+                                    size="large"
+                                    type="submit"
+                                    variant="contained"
+                                >
+                                    Login
+                                </Button>
+                                <Grid
+                                    className={classes.forgotLinksWrap}
+                                    container
+                                    direction={"column"}
+                                    alignItems={"center"}
+                                >
+                                    <Grid item>
+                                        <Link to={"/"} className={classes.forgotLink}>
+                                            Forgot Username?
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <Link to={"/"} className={classes.forgotLink}>
+                                            Forgot Password?
+                                        </Link>
                                     </Grid>
                                 </Grid>
-                            </form>
-                        </Paper>
+                            </Grid>
+                        </form>
+                        
                     </Grid>
                 </Box>
             </Container>
