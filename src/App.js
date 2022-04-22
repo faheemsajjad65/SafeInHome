@@ -5,8 +5,6 @@ import Settings from "./views/Settings"
 import StoreProvider from './store/StoreProvider';
 import {useSelector} from "react-redux";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import LoginForm from "./components/LoginForm";
-import CarePlanWizard from "./views/CarePlanWizard";
 
 function Authenticate({children}){
     const { isLoggedIn } = useSelector(state => state.auth);
@@ -37,8 +35,6 @@ function SihWizard (){
         <ContentWrapper>
             <Routes>
                 <Route path="/" element={ <Welcome/> } />
-                <Route path="/login" element={ <LoginForm/> } />
-                <Route path="/wizard" element={ <Authenticate> <CarePlanWizard /> </Authenticate> } />
                 <Route path="/settings" element={ <Authenticate> <Settings /> </Authenticate> } />
             </Routes>
         </ContentWrapper>
