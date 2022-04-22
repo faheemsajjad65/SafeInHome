@@ -1,7 +1,7 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT, LOGIN_ATTEMPT_INIT, LOGIN_ATTEMPT_UPDATE, SET_LOGIN_ATTEMPT_BLOCKED,
+    LOGOUT, LOGIN_ATTEMPT_UPDATE, SET_LOGIN_ATTEMPT_BLOCKED,
 } from "../types";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -35,8 +35,6 @@ export default function AuthReducer (state = initialState, action) {
                 isLoggedIn: false,
                 user: null,
             };
-        case LOGIN_ATTEMPT_INIT:
-            return state;
         case LOGIN_ATTEMPT_UPDATE:
             return {
                 ...state,

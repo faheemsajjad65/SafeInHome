@@ -3,15 +3,12 @@ import {
     LOGIN_FAIL,
     SET_ERROR_MESSAGE,
     LOGOUT,
-    LOGIN_ATTEMPT_INIT,
     LOGIN_ATTEMPT_UPDATE,
     SET_LOGIN_ATTEMPT_BLOCKED
 } from "../types";
 import AuthService from "../services/auth.service";
 
 export const login = (username, password, isLastAttempt) => (dispatch) => {
-
-    dispatch({type: LOGIN_ATTEMPT_INIT});
     return AuthService.login(username, password, isLastAttempt).then(
         (data) => {
             if(data.data.token){
