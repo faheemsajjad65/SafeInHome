@@ -1,20 +1,16 @@
 import axios from "axios";
 
-const API_URL = process.env.BASE_URL + "api/auth/";
+const API_URL = `${process.env.REACT_APP_API_BASE_URL}/api/Authorization/csruser`;
 
-const login = (username, password) => {
-    return axios
-        .post(API_URL + "login", {
+const login = async (username, password,isLastAttempt) => {
+    const response = await axios.get(API_URL, {
+        headers:{
             username,
             password,
-        })
-        .then((response) => {
-            if (response.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-
-            return response.data;
-        });
+            isLastAttempt
+        }
+    })
+    return response;
 };
 
 const logout = () => {
