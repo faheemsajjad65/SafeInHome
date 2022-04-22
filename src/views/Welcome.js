@@ -9,6 +9,6 @@ export default function Welcome() {
     const { isLoggedIn } = useSelector(state => state.auth);
 
     return (
-        isLoggedIn ? <LoginForm /> : <Home />
+        !isLoggedIn ? <LoginForm /> : <Home />
     )
 }
