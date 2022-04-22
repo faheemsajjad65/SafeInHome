@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import variables from "./assets/scss/_variables.scss"
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/scss/styles.scss';
+import CarePlan from './components/CarePlan';
 
 function Authenticate({children}){
     const { isLoggedIn } = useSelector(state => state.auth);
@@ -46,6 +47,7 @@ function SihWizard (){
             <Routes>
                 <Route path="/" element={ <Welcome/> } />
                 <Route path="/settings" element={ <Authenticate> <Settings /> </Authenticate> } />
+                <Route path="/wizard/carePlan/:id" element={ <Authenticate> <CarePlan /> </Authenticate> } />
             </Routes>
         </ContentWrapper>
     </Router>

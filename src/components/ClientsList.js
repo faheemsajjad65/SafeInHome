@@ -1,10 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import CarePlan from './CarePlan'
 
 export default function ClientsList() {
 
   const clientsList = useSelector((state) => state.clients);
-  
+
+  const navigate =  useNavigate();
+
   return (
     <table className="table table-dark">
         <thead>
@@ -16,9 +20,15 @@ export default function ClientsList() {
             </tr>
         </thead>
         <tbody>
+            <tr onClick={() => navigate('/wizard/carePlan/1')}>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
           {
             clientsList.map( client => 
-              <tr>
+              <tr onClick={() => navigate(`/wizard/carePlan/${client.id}`)}>
                 <td>1</td>
                 <td>Mark</td>
                 <td>Otto</td>
