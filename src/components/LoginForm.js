@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 //import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +13,8 @@ import LogoSrc from "../assets/images/logo.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import {login} from "../actions/auth";
-import {LinearProgress} from "@material-ui/core";
+import { login, setIsLoginAttemptBlocked } from "../actions/auth";
+import {LinearProgress, Typography} from "@material-ui/core";
 
 function getProgressBarProps(hasError) {
     return {
@@ -69,11 +70,14 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function LoginForm() {
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn, loginAttemptsCount, isLoginBlocked } = useSelector(state => state.auth);
     const { isDarkMode }  = useSelector((state) => state.settings);
+
     const [hasLoginPending, setHasLoginPending] = useState(false);
     const [loginError, setLoginError] = useState(null);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const classes = useStyles();
     const {
         register,
@@ -86,11 +90,11 @@ export default function LoginForm() {
     const handleLoginSuccess = useCallback(
         (res) => {
         setHasLoginPending(false);
-        if (res instanceof Error) {
+        if ((res instanceof Error) || isLoginBlocked) {
             setLoginError(res);
             return;
         }
-        return window.history.push("/");
+        return navigate("/wizard");
     },[]);
 
     useEffect(() => {
@@ -107,9 +111,11 @@ export default function LoginForm() {
 
     const handleFormSubmit = (data) => {
         // console.log("submitted data ",data)
+        dispatch(setIsLoginAttemptBlocked(false));
+        const isLastAttempt = loginAttemptsCount >= 2;
         setLoginError(null);
         setHasLoginPending(true);
-        dispatch(login(data.username, data.password)).then(
+        dispatch(login(data.username, data.password,isLastAttempt)).then(
             handleLoginSuccess,
             handleLoginFail
         );
@@ -253,6 +259,35 @@ export default function LoginForm() {
                                         <Link to={"/"} className={classes.forgotLink}>
                                             Forgot Password?
                                         </Link>
+                                    </Grid>
+                                    <Grid
+                                        container
+                                        alignItems={"center"}
+                                    >
+                                        {
+                                            isLoginBlocked && (
+                                                <Typography
+                                                    color={"error"}
+                                                    component={"h6"}
+                                                    variant={"h6"}
+                                                >
+                                                    Please retry login after 15 minutes or contact your administrator
+                                                </Typography>
+                                            )
+                                        }
+
+                                        {
+                                            loginError && (
+                                                <Typography
+                                                    color={"error"}
+                                                    component={"h6"}
+                                                    variant={"h6"}
+                                                >
+                                                    Username or Password is incorrect
+                                                </Typography>
+                                            )
+                                        }
+
                                     </Grid>
                                 </Grid>
                             </Grid>
