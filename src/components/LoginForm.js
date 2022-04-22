@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) =>
             width: "100%",
         },
         btnSubmit: {
-            margin: theme.spacing(3, 0, 5),
+            margin: theme.spacing(6, 0, 5),
             padding: theme.spacing(2.4, 0),
             fontSize: "14px"
         },
@@ -85,7 +85,7 @@ export default function LoginForm() {
         formState: { errors }
     } = useForm();
 
-    const inputVariant = (isDarkMode ? "filled" : "outlined");
+    const inputVariant = (isDarkMode ? "outlined" : "outlined");
 
     const handleLoginSuccess = useCallback(
         (res) => {
@@ -153,7 +153,7 @@ export default function LoginForm() {
                             noValidate
                             onSubmit={rhfHandleSubmit(handleFormSubmit)}
                         >
-                            <Grid container direction="row" spacing={2}>
+                            <Grid container direction="row">
                                 <Grid item xs={12}>
                                     <TextField
                                         {
