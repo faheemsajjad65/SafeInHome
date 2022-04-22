@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getCarePlans } from '../actions/carePlan'
 import { useSelector } from 'react-redux';
 
-export default function CarePlanWizard(){
+export default function Wizard(){
 
     const dispatch = useDispatch();
 

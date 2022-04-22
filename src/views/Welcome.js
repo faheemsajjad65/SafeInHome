@@ -1,11 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import LoginForm from '../components/LoginForm';
-import CarePlanWizard from "./CarePlanWizard"
+import Home from './Home';
 
 
 export default function Welcome() {
 
+    const { isLoggedIn } = useSelector(state => state.auth);
+
     return (
-        true ? <LoginForm /> : <CarePlanWizard />
+        isLoggedIn ? <LoginForm /> : <Home />
     )
 }

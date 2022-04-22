@@ -94,7 +94,7 @@ export default function LoginForm() {
             setLoginError(res);
             return;
         }
-        return navigate("/wizard");
+        return navigate("/");
     },[]);
 
     useEffect(() => {
