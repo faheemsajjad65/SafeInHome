@@ -48,7 +48,7 @@ export const login = (username, password, isLastAttempt) => (dispatch) => {
                 payload: message,
             });
             dispatch(updateLoginAttempts());
-            return Promise.reject();
+            return Promise.reject(error);
         }
     );
 };

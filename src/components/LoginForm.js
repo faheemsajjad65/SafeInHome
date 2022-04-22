@@ -271,6 +271,18 @@ export default function LoginForm() {
                                             )
                                         }
 
+                                        {
+                                            loginError && (
+                                                <Typography
+                                                    color={"error"}
+                                                    component={"h6"}
+                                                    variant={"h6"}
+                                                >
+                                                    Username or Password is incorrect
+                                                </Typography>
+                                            )
+                                        }
+
                                     </Grid>
                                 </Grid>
                             </form>
