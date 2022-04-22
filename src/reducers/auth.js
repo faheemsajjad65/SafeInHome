@@ -1,16 +1,19 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT,
+    LOGOUT, LOGIN_ATTEMPT_INIT, LOGIN_ATTEMPT_UPDATE, SET_LOGIN_ATTEMPT_BLOCKED,
 } from "../types";
 
 const user = JSON.parse(localStorage.getItem("user"));
+const loginAttemptsCount = sessionStorage.getItem("login_attempts");
 
-const initialState = user
-    ? { isLoggedIn: true, user }
-    : { isLoggedIn: false, user: null };
-
-export default function (state = initialState, action) {
+const initialState = {
+    isLoggedIn: false,
+    loginAttemptsCount: loginAttemptsCount ?? 1,
+    isLoginBlocked: false,
+    user: user ?? null
+}
+export default function AuthReducer (state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
@@ -31,6 +34,18 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoggedIn: false,
                 user: null,
+            };
+        case LOGIN_ATTEMPT_INIT:
+            return state;
+        case LOGIN_ATTEMPT_UPDATE:
+            return {
+                ...state,
+                loginAttemptsCount: payload
+            };
+        case SET_LOGIN_ATTEMPT_BLOCKED:
+            return {
+                ...state,
+                isLoginBlocked: payload
             };
         default:
             return state;

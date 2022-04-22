@@ -14,8 +14,7 @@ import PersonIcon from '@material-ui/icons/Person';
 
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import {login} from "../actions/auth";
-import {setLoginAttemptsTimer} from "../actions/loginAttempts";
+import { login, setIsLoginAttemptBlocked } from "../actions/auth";
 import {LinearProgress, Typography} from "@material-ui/core";
 
 function getProgressBarProps(hasError) {
@@ -66,9 +65,8 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function LoginForm() {
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn, loginAttemptsCount, isLoginBlocked } = useSelector(state => state.auth);
     const { isDarkMode }  = useSelector((state) => state.settings);
-    const {loginAttemptsCount,isRetryLoginBlocked} = useSelector(state=> state.loginAttempts);
 
     const [hasLoginPending, setHasLoginPending] = useState(false);
     const [loginError, setLoginError] = useState(null);
@@ -84,15 +82,10 @@ export default function LoginForm() {
 
     const inputVariant = (isDarkMode ? "filled" : "outlined");
 
-    useEffect(()=>{
-        if(loginAttemptsCount>=3) dispatch(setLoginAttemptsTimer());
-    },[loginAttemptsCount])
-
-
     const handleLoginSuccess = useCallback(
         (res) => {
         setHasLoginPending(false);
-        if (res instanceof Error) {
+        if ((res instanceof Error) || isLoginBlocked) {
             setLoginError(res);
             return;
         }
@@ -113,14 +106,14 @@ export default function LoginForm() {
 
     const handleFormSubmit = (data) => {
         // console.log("submitted data ",data)
-        if(!isRetryLoginBlocked){
-            setLoginError(null);
-            setHasLoginPending(true);
-            dispatch(login(data.username, data.password)).then(
-                handleLoginSuccess,
-                handleLoginFail
-            );
-        }
+        dispatch(setIsLoginAttemptBlocked(false));
+        const isLastAttempt = loginAttemptsCount >= 2;
+        setLoginError(null);
+        setHasLoginPending(true);
+        dispatch(login(data.username, data.password,isLastAttempt)).then(
+            handleLoginSuccess,
+            handleLoginFail
+        );
     };
 
     return (
@@ -267,7 +260,7 @@ export default function LoginForm() {
                                         alignItems={"center"}
                                     >
                                         {
-                                            isRetryLoginBlocked && (
+                                            isLoginBlocked && (
                                                 <Typography
                                                     color={"error"}
                                                     component={"h6"}
