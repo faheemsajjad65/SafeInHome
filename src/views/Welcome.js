@@ -6,6 +6,6 @@ import CarePlanWizard from "./CarePlanWizard"
 export default function Welcome() {
 
     return (
-        false ? <LoginForm /> : <CarePlanWizard />
+        true ? <LoginForm /> : <CarePlanWizard />
     )
 }
