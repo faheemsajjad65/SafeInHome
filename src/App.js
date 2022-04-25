@@ -9,7 +9,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 import variables from "./assets/scss/_variables.scss"
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/scss/styles.scss';
-import CarePlan from './components/CarePlan';
+import CarePlan from './views/CarePlan';
 
 function Authenticate({children}){
     const { isLoggedIn } = useSelector(state => state.auth);

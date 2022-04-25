@@ -17,10 +17,10 @@ export default function ClientSearch() {
         <div>
             <form onSubmit={handleSubmit(handleSearchForm)}>
                 First Name
-                <input {...register("firstname")} type="text" id="fname" name="firstname" placeholder="Enter First Name" />
+                <input {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" />
 
                 Last Name
-                <input {...register("lastname")} type="text" id="lname" name="lastname" placeholder="Enter Last Name" />
+                <input {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" />
 
                 Street
                 <input {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" />
