@@ -5,7 +5,7 @@ import Settings from "./views/Settings"
 import StoreProvider from './store/StoreProvider';
 import {useSelector} from "react-redux";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-//import { StyledEngineProvider } from '@material-ui/material/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 import variables from "./assets/scss/_variables.scss"
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/scss/styles.scss';
@@ -56,12 +56,11 @@ function SihWizard (){
 
 function App() {
     return (
-      // <StyledEngineProvider injectFirst>
-      //   <SihWizard/>
-      // </StyledEngineProvider>
-      <StoreProvider>
-        <SihWizard/>
-      </StoreProvider>
+        <StoreProvider>
+            <StylesProvider injectFirst>
+                    <SihWizard/>
+            </StylesProvider>
+        </StoreProvider>
   );
 }
 
