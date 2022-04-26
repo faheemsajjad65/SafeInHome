@@ -6,9 +6,13 @@ export const withBaseLayout = (Component, config) => {
   return (props) => {
     return (
       <>
-        <Navbar {...config} />
-        <Menu {...config} />
-        <Component {...props} />
+        <Navbar {...config} />   
+        <div className="app-content"> 
+          <Menu {...config} />
+          <div className="page-content">
+            <Component {...props} />
+          </div>
+        </div>
       </>
     )
   }
