@@ -5,15 +5,18 @@ import ClientsList from "../components/ClientsList"
 import { useDispatch } from 'react-redux';
 import { getCarePlans } from '../actions/carePlan'
 import { useSelector } from 'react-redux';
-// import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 export default function Wizard(){
 
     const dispatch = useDispatch();
-
+    const {user} = useSelector((state) => state.auth); // get user data
     useEffect(() => {
-        dispatch(getCarePlans())
+        const unSub = dispatch(getCarePlans(user.data.token))
+        return () => {
+            unSub();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch])
 
     const carePlans = useSelector((state) => state.carePlans);
@@ -22,13 +25,13 @@ export default function Wizard(){
     return (
         <>
             
-                <Typography variant="h4">
-                    Search For Client
-                </Typography>
-                
-                <ClientSearch />
-                
-                { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList list={clientList} /> } 
+            <Typography variant="h4">
+                Search For Client
+            </Typography>
+            
+            <ClientSearch />
+            
+            { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList list={clientList} /> } 
            
         </>
     )
