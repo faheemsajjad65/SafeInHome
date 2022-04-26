@@ -109,6 +109,10 @@ export default function LoginForm() {
     useEffect(() => {
         if (!isLoggedIn) return;
         handleLoginSuccess();
+        return () => {
+            setLoginError(null);
+            setHasLoginPending(null);
+        };
     }, []);
 
     const handleLoginFail = useCallback((error) => {
