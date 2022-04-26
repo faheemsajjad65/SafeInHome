@@ -10,7 +10,6 @@ import Box from '@material-ui/core/Box';
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import LogoSrc from "../assets/images/logo.svg";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { login, setIsLoginAttemptBlocked } from "../actions/auth";
