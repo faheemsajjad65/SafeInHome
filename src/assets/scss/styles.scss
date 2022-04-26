@@ -55,6 +55,22 @@ body {
 
 
 
+//Topbar
+
+.navbar {
+  height: $topbar-base-height;
+  .navbar-brand {
+    margin-left: 6px;
+    img {
+      width: $navbar-brand-size;
+      height: $navbar-brand-size;
+    }
+  }
+  .user-image {
+    border: 2px solid $success;
+  }
+}
+
 
 // Sidebar
 .sidebar {
@@ -70,8 +86,9 @@ body {
 
       .nav-link {
           text-align: center;
-          padding: 0.75rem 1rem;
+          padding: 24px;
           width: $sidebar-collapsed-width;
+          border-left: 4px solid transparent;
 
           span {
               font-size: 0.65rem;
@@ -82,6 +99,7 @@ body {
       &.active {
           .nav-link {
               font-weight: 700;
+              border-left-color: $brand;
           }
       }
 
@@ -365,7 +383,6 @@ body {
 
               .nav-link {
                   text-align: center;
-                  padding: 0.75rem 1rem;
                   width: $sidebar-collapsed-width;
 
                   span {
@@ -402,81 +419,10 @@ body {
 
 // Sidebar Color Variants
 
-// Sidebar Light
-.sidebar-light {
-  .sidebar-brand {
-      color: $gray-700;
-  }
-
-  hr.sidebar-divider {
-      border-top: 1px solid $gray-200;
-  }
-
-  .sidebar-heading {
-      color: $gray-500;
-  }
-
-  .nav-item {
-      .nav-link {
-          color: $gray-600;
-
-          i {
-              color: $gray-400;
-          }
-
-          &:active,
-          &:focus,
-          &:hover {
-              color: $gray-700;
-
-              i {
-                  color: $gray-700;
-              }
-          }
-
-          // Accordion
-          &[data-toggle="collapse"]::after {
-              color: $gray-500;
-          }
-      }
-
-      &.active {
-          .nav-link {
-              color: $gray-700;
-
-              i {
-                  color: $gray-700;
-              }
-          }
-      }
-  }
-
-  // Color the sidebar toggler
-  #sidebarToggle {
-      background-color: $gray-200;
-
-      &::after {
-          color: $gray-500;
-      }
-
-      &:hover {
-          background-color: $gray-300;
-      }
-  }
-}
-
 // Sidebar Dark
 .sidebar-dark {
   .sidebar-brand {
       color: $white;
-  }
-
-  hr.sidebar-divider {
-      border-top: 1px solid fade-out($white, 0.85);
-  }
-
-  .sidebar-heading {
-      color: fade-out($white, 0.6);
   }
 
   .nav-item {
@@ -513,28 +459,18 @@ body {
           }
       }
   }
-
-  // Color the sidebar toggler
-  #sidebarToggle {
-      background-color: fade-out($white, 0.8);
-
-      &::after {
-          color: fade-out($white, 0.5);
-      }
-
-      &:hover {
-          background-color: fade-out($white, 0.75);
-      }
-  }
-
-  &.toggled {
-      #sidebarToggle::after {
-          color: fade-out($white, 0.5);
-      }
-  }
 }
 
 
 .sidebar {
   background-color: #253342;
+}
+
+.app-content {
+  display: flex;
+  padding-top: $topbar-base-height;
+}
+
+.page-content {
+  padding: 16px;
 }

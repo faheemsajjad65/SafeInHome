@@ -53,9 +53,14 @@ $box-shadow: 0 0.15rem 1.75rem 0 rgba($gray-900, .15) !default;
 
 
 // Spacing Variables
-// Change below variable if the height of the navbar changes
-$topbar-base-height: 4.375rem !default;
-// Change below variable to change the width of the sidenav
-$sidebar-base-width: 14rem !default;
-// Change below variable to change the width of the sidenav when collapsed
-$sidebar-collapsed-width: 6.5rem !default;
+$topbar-base-height: 72px;
+$sidebar-base-width: 80px !default;
+$sidebar-collapsed-width: 80px !default;
+
+
+$navbar-brand-size: 40px;
+
+
+//Custom state colors
+
+$success: #2DB77B;
