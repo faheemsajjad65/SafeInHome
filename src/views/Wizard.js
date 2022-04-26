@@ -28,7 +28,7 @@ export default function Wizard(){
             
             <ClientSearch />
             
-            { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList list={clientList} /> } 
+            { clientList.length != 0 ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  } 
            
         </>
     )
