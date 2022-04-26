@@ -1,26 +1,40 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Menu() {
   return (
     <div className="app-sidebar">
+      
       <ul className="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+        
         <li className="nav-item active">
-            <a className="nav-link" href="#">
-            <i className="icon icon-wizard"></i>
-            <span>Wizard</span></a>
+          <Link
+            to="/"
+            className="nav-link">
+              <i className="icon icon-wizard"></i>
+              <span>Wizard</span>
+          </Link>
         </li>
+        
         <li className="nav-item mt-auto">
-            <a className="nav-link" href="#">
+          <Link
+            to="/"
+            className="nav-link">
               <i className="icon icon-users"></i>
               <span>Team</span>
-            </a>
+          </Link>
         </li>
+
         <li className="nav-item">
-            <a className="nav-link" href="#">
+          <Link
+            to="/settings"
+            className="nav-link">
               <i className="icon icon-settings"></i>
-              <span>Settings</span>
-            </a>
+            <span>Settings</span>
+          </Link>
         </li>
+
+
       </ul>
     </div>
   )
