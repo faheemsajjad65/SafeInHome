@@ -6,18 +6,18 @@ export default function Menu() {
       <ul className="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
         <li className="nav-item active">
             <a className="nav-link" href="#">
-            <span className="icon icon-wizard"></span>
-                <span>Wizard</span></a>
+            <i className="icon icon-wizard"></i>
+            <span>Wizard</span></a>
         </li>
         <li className="nav-item">
             <a className="nav-link" href="#">
-              <span className="icon icon-users"></span>
+              <i className="icon icon-users"></i>
               <span>Team</span>
             </a>
         </li>
         <li className="nav-item">
             <a className="nav-link" href="#">
-              <span className="icon icon-settings"></span>
+              <i className="icon icon-settings"></i>
               <span>Settings</span>
             </a>
         </li>

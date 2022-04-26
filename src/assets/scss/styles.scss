@@ -60,7 +60,7 @@ body {
 .navbar {
   height: $topbar-base-height;
   .navbar-brand {
-    margin-left: 6px;
+    margin-left: 10px;
     img {
       width: $navbar-brand-size;
       height: $navbar-brand-size;
@@ -464,6 +464,13 @@ body {
 
 .sidebar {
   background-color: #253342;
+
+  .nav-link {
+    i {
+      margin-bottom: 8px;
+      font-size: 22px !important;
+    }
+  }
 }
 
 .app-content {
