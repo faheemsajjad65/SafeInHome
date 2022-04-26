@@ -5,6 +5,8 @@ import ClientsList from "../components/ClientsList"
 import { useDispatch } from 'react-redux';
 import { getCarePlans } from '../actions/carePlan'
 import { useSelector } from 'react-redux';
+// import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 export default function Wizard(){
 
@@ -15,11 +17,19 @@ export default function Wizard(){
     },[dispatch])
 
     const carePlans = useSelector((state) => state.carePlans);
+    const clientList = useSelector((state) => state.clients)
 
     return (
         <>
-            <ClientSearch />
-            { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList /> } 
+            
+                <Typography variant="h4">
+                    Search For Client
+                </Typography>
+                
+                <ClientSearch />
+                
+                { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList list={clientList} /> } 
+           
         </>
     )
 }
