@@ -12,16 +12,12 @@ export default function Wizard(){
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth); // get user data
     useEffect(() => {
-        const unSub = dispatch(getCarePlans(user.token))
-        return () => {
-            if(unSub) unSub.then(()=>{
-                return Promise.resolve();
-            });
-        }
+        dispatch(getCarePlans(user.data.token))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch])
 
-    const carePlans = useSelector((state) => state.carePlans);
-    const clientList = useSelector((state) => state.clients)
+    const carePlans = useSelector((state) => state.carePlan);
+    const clientList = useSelector((state) => state.clients);
 
     return (
         <>
@@ -32,7 +28,7 @@ export default function Wizard(){
             
             <ClientSearch />
             
-            { carePlans ? <CarePlansList list = {carePlans} /> : <ClientsList list={clientList} /> } 
+            { clientList.length != 0 ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
            
         </>
     )
