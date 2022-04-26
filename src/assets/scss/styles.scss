@@ -75,7 +75,7 @@ body {
 // Sidebar
 .sidebar {
   width: $sidebar-collapsed-width;
-  min-height: 100vh;
+  min-height: 100%;
 
   .nav-item {
       position: relative;
@@ -475,9 +475,14 @@ body {
 
 .app-content {
   display: flex;
-  padding-top: $topbar-base-height;
+  //padding-top: $topbar-base-height;
+  height: calc(100% - $topbar-base-height);
 }
 
 .page-content {
   padding: 16px;
+}
+
+html, body, body >div {
+  height: 100%;
 }

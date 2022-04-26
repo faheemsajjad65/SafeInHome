@@ -9,7 +9,7 @@ export default function Menu() {
             <i className="icon icon-wizard"></i>
             <span>Wizard</span></a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item mt-auto">
             <a className="nav-link" href="#">
               <i className="icon icon-users"></i>
               <span>Team</span>

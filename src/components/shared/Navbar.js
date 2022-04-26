@@ -6,7 +6,7 @@ import LogoSrc from "../../assets/images/logo.svg";
 export default function Navbar() {
   return (
   <div className="app-header">
-    <nav className="navbar navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           <img alt="brand-logo" src={LogoSrc} width="30" height="24"/>
