@@ -46,13 +46,13 @@ const useStyles = makeStyles((theme) =>
             padding: theme.spacing(2.4, 0),
             fontSize: "14px"
         },
-        forgotLinksWrap: {
-           //marginBottom: theme.spacing(2),
-        },
         forgotLink: {
             display: "inline-block",
             marginBottom: theme.spacing(2),
-            cursor: "pointer"
+            cursor: "pointer",
+            '&:hover': {
+                color: "#fa03c1",
+            }
         },
         progressBar: {
             position: "absolute",
@@ -66,6 +66,16 @@ const useStyles = makeStyles((theme) =>
         logo: {
             marginBottom: theme.spacing(7.5),
         },
+        errorMessage: {
+            fontSize: "16px",
+            textAlign: "center",
+            width: "100%",
+            margin: "1em 0",
+            color: "red",
+            '&:hover': {
+                color: "#fc7373",
+            },
+        }
     })
 );
 
@@ -191,7 +201,7 @@ export default function LoginForm() {
                                                 color: "inherit"
                                             }
                                         }}
-                                        error={!!errors?.username}
+                                        error={!!errors?.username || loginError}
                                         helperText={`${errors?.username ? errors.username.message : ""}`}
                                     />
                                 </Grid>
@@ -228,7 +238,7 @@ export default function LoginForm() {
                                                 color: "inherit"
                                             }
                                         }}
-                                        error={!!errors?.password}
+                                        error={!!errors?.password || loginError}
                                         helperText={`${errors?.password ? errors.password.message : ""}`}
                                     />
                                 </Grid>
@@ -266,25 +276,17 @@ export default function LoginForm() {
                                     >
                                         {
                                             isLoginBlocked && (
-                                                <Typography
-                                                    color={"error"}
-                                                    component={"h6"}
-                                                    variant={"h6"}
-                                                >
+                                                <div className={classes.errorMessage}>
                                                     Please retry login after 15 minutes or contact your administrator
-                                                </Typography>
+                                                </div>
                                             )
                                         }
 
                                         {
                                             loginError && (
-                                                <Typography
-                                                    color={"error"}
-                                                    component={"h6"}
-                                                    variant={"h6"}
-                                                >
+                                                <div className={classes.errorMessage}>
                                                     Username or Password is incorrect
-                                                </Typography>
+                                                </div>
                                             )
                                         }
 
