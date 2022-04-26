@@ -12,11 +12,12 @@ export default function Wizard(){
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth); // get user data
     useEffect(() => {
-        const unSub = dispatch(getCarePlans(user.data.token))
+        const unSub = dispatch(getCarePlans(user.token))
         return () => {
-            unSub();
+            if(unSub) unSub.then(()=>{
+                return Promise.resolve();
+            });
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch])
 
     const carePlans = useSelector((state) => state.carePlans);

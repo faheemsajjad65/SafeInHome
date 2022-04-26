@@ -1,6 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-//import Avatar from '@material-ui/core/Avatar';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -12,16 +10,7 @@ import Container from '@material-ui/core/Container';
 import LogoSrc from "../assets/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { login, setIsLoginAttemptBlocked } from "../actions/auth";
-import {LinearProgress, Typography} from "@material-ui/core";
-
-function getProgressBarProps(hasError) {
-    return {
-        variant: hasError ? "determinate" : "indeterminate",
-        value: 100,
-        color: hasError ? "secondary" : "primary",
-    };
-}
+import { login } from "../actions/auth";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -79,14 +68,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function LoginForm() {
-    const { isLoggedIn, loginAttemptsCount, isLoginBlocked } = useSelector(state => state.auth);
+    const { hasLoginPending, errorMessage, loginAttemptsCount, isLoginBlocked } = useSelector(state => state.auth);
     const { isDarkMode }  = useSelector((state) => state.settings);
 
-    const [hasLoginPending, setHasLoginPending] = useState(false);
-    const [loginError, setLoginError] = useState(null);
-
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const classes = useStyles();
     const {
         register,
@@ -96,52 +81,13 @@ export default function LoginForm() {
 
     const inputVariant = (isDarkMode ? "outlined" : "outlined");
 
-    const handleLoginSuccess = useCallback(
-        (res) => {
-        setHasLoginPending(false);
-        if ((res instanceof Error) || isLoginBlocked) {
-            setLoginError(res);
-            return;
-        }
-        return navigate("/");
-    },[]);
-
-    useEffect(() => {
-        if (!isLoggedIn) return;
-        handleLoginSuccess();
-        return () => {
-            setLoginError(null);
-            setHasLoginPending(null);
-        };
-    }, []);
-
-    const handleLoginFail = useCallback((error) => {
-        if (error instanceof Error) {
-            setLoginError(error);
-        }
-        setHasLoginPending(false);
-    }, []);
-
     const handleFormSubmit = (data) => {
-        // console.log("submitted data ",data)
-        dispatch(setIsLoginAttemptBlocked(false));
         const isLastAttempt = loginAttemptsCount >= 2;
-        setLoginError(null);
-        setHasLoginPending(true);
-        dispatch(login(data.username, data.password,isLastAttempt)).then(
-            handleLoginSuccess,
-            handleLoginFail
-        );
+        dispatch(login(data.username, data.password,isLastAttempt))
     };
 
     return (
             <Container component="main" maxWidth="xs">
-                {(hasLoginPending || loginError) && (
-                    <LinearProgress
-                        className={classes.progressBar}
-                        {...getProgressBarProps(loginError != null)}
-                    />
-                )}
                 <CssBaseline />
                 <Box
                     sx={{
@@ -156,11 +102,7 @@ export default function LoginForm() {
                         alignContent="center"
                         justifyContent={"center"}
                     >
-                        {/* <Avatar className={classes.loginAvatar}>
-                            <PersonIcon />
-                        </Avatar> */}
                         <img className={classes.logo} alt="brand-logo" src={LogoSrc} />
-                        
                         <form
                             className={classes.form}
                             noValidate
@@ -204,7 +146,7 @@ export default function LoginForm() {
                                                 color: "inherit"
                                             }
                                         }}
-                                        error={!!errors?.username || loginError}
+                                        error={!!errors?.username || errorMessage}
                                         helperText={`${errors?.username ? errors.username.message : ""}`}
                                     />
                                 </Grid>
@@ -241,7 +183,7 @@ export default function LoginForm() {
                                                 color: "inherit"
                                             }
                                         }}
-                                        error={!!errors?.password || loginError}
+                                        error={!!errors?.password || errorMessage}
                                         helperText={`${errors?.password ? errors.password.message : ""}`}
                                     />
                                 </Grid>
@@ -258,7 +200,6 @@ export default function LoginForm() {
                                     Login
                                 </Button>
                                 <Grid
-                                    className={classes.forgotLinksWrap}
                                     container
                                     direction={"column"}
                                     alignItems={"center"}
@@ -286,7 +227,7 @@ export default function LoginForm() {
                                         }
 
                                         {
-                                            loginError && (
+                                            errorMessage && (
                                                 <div className={classes.errorMessage}>
                                                     Username or Password is incorrect
                                                 </div>
