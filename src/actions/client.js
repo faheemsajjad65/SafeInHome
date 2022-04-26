@@ -9,10 +9,10 @@ export const getClients = (formData) => dispatch => {
 
     return clientService
         .getClients(formData)
-        .then(data => {
+        .then(response => {
             dispatch({
                 type: "GET_CLIENTS_SUCCESS",
-                payload: data,
+                payload: response.data,
             });
         })
         .catch(err => dispatch({type: "GET_CLIENTS_ERROR"}));
