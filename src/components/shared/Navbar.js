@@ -12,9 +12,8 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout()).then(()=>{
-      navigate("/")
-    })
+    dispatch(logout())
+    navigate("/")
   }
   return (
       <div className="app-header">
