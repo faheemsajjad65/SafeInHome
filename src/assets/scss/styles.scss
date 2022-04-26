@@ -45,12 +45,19 @@ body {
   padding: 19px 22px;
 }
 
+.MuiTextField-root.MuiFormControl-marginNormal {
+  margin-top: 40px !important;
+}
+
 .MuiInputLabel-root {
-  color: rgba(229, 229, 229, 0.38);
+  color: rgba(229, 229, 229, 0.38) !important;
+  transform: translate(2px, -30px) scale(0.75) !important;
+  font-size: large !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
   border-color: rgba(209, 210, 211, 0.22);
+  top: 0px !important;
 }
 
 
