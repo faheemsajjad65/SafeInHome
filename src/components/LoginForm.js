@@ -108,7 +108,10 @@ export default function LoginForm() {
 
     useEffect(() => {
         if (!isLoggedIn) return;
-        handleLoginSuccess();
+        const unSubHLS = handleLoginSuccess();
+        return () => {
+            unSubHLS();
+        }
     }, []);
 
     const handleLoginFail = useCallback((error) => {

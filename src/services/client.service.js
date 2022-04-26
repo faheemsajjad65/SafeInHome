@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_BASE_URL + "/api/clients/";
+const API_URL = process.env.REACT_APP_API_BASE_URL + "/api/CarePlanWizard/";
 
 const getClients = async (filters) => {
     console.log(filters);
@@ -8,7 +8,7 @@ const getClients = async (filters) => {
         .get(API_URL + "searchclients" , {
             params: filters
         });
-    return response.data;
+    return response;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
