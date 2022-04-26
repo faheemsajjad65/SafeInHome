@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_BASE_URL + "api/carePlans/";
+const API_URL = process.env.REACT_APP_API_BASE_URL + "/api/carePlans/";
 
 const getCarePlans = async (filters) => {
     const response = await axios
