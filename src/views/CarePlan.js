@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CarePlan() {
-    const { id } = useParams();
+    const urlParams = useParams();
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(false);
 
@@ -143,6 +143,7 @@ function CarePlan() {
                                         handleSubmit={handleSubmit}
                                         onSubmit={handleFormSubmit}
                                         ref={refSubmitButton}
+                                        clientId={urlParams?.clientId}
                                     />
                                 )
                             }
