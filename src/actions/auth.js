@@ -4,15 +4,17 @@ import {
     SET_ERROR_MESSAGE,
     LOGOUT,
     LOGIN_ATTEMPT_UPDATE,
-    SET_LOGIN_ATTEMPT_BLOCKED
+    SET_LOGIN_ATTEMPT_BLOCKED,
+    LOGIN_ATTEMPT_INIT
 } from "../types";
 import AuthService from "../services/auth.service";
 
 export const login = (username, password, isLastAttempt) => (dispatch) => {
+    dispatch({type: LOGIN_ATTEMPT_INIT});
+    dispatch(setIsLoginAttemptBlocked(false));
     return AuthService.login(username, password, isLastAttempt).then(
         (data) => {
             if(data.data.token){
-                dispatch(setIsLoginAttemptBlocked(false));
                 dispatch(resetLoginAttempts());
                 localStorage.setItem("user", JSON.stringify(data.data));
                 localStorage.setItem("token", JSON.stringify(data.data.token));
