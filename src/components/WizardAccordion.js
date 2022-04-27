@@ -119,7 +119,6 @@ export default function WizardAccordion({activeStep,setActiveStep}) {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    <Typography className={classes.heading}>{item.step}</Typography>
                                     {item.detail}
                                 </Typography>
                             </AccordionDetails>

@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react'
-import { useParams } from 'react-router-dom'
 import { withBaseLayout } from '../layouts/Base'
 import HealthInformation from '../components/carePlanAccordians/HealthInformation'
 import Technology from '../components/carePlanAccordians/Technology'
@@ -17,6 +16,8 @@ import Button from "@material-ui/core/Button";
 import {useForm} from "react-hook-form";
 import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import {useDispatch, useSelector} from "react-redux";
+import * as clientService from "../services/client.service";
 
 const drawerWidth = 240;
 
@@ -106,9 +107,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CarePlan() {
-    const { id } = useParams();
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(false);
+    const { user }  = useSelector((state) => state.auth);
 
     const refSubmitButton = useRef(null);
     const {reset,register,handleSubmit} = useForm();
@@ -118,7 +119,17 @@ function CarePlan() {
     };
 
     const handleFormSubmit = (data) => {
-        console.log("submitted data ",data)
+        // console.log("submitted data ",data)
+        const payload = {
+            userID: user.userID,
+            clientComment: data.clientComment
+        }
+        clientService.updateClientNote(payload)
+            .then(()=>{
+                // success
+                return Promise.resolve();
+            })
+
     };
 
     const triggerSubmit = () => {

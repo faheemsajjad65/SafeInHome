@@ -14,7 +14,7 @@ import CarePlan from './views/CarePlan';
 function Authenticate({children}){
     const { isLoggedIn } = useSelector(state => state.auth);
     return (
-        !isLoggedIn ? children: <Navigate to="/" />
+        isLoggedIn ? children: <Navigate to="/" />
     )
 }
 
