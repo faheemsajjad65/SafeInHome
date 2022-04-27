@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) =>
         },
         logo: {
             marginBottom: theme.spacing(7.5),
+            cursor: "pointer"
         },
         errorMessage: {
             fontSize: "16px",
@@ -102,7 +103,10 @@ export default function LoginForm() {
                         alignContent="center"
                         justifyContent={"center"}
                     >
-                        <img className={classes.logo} alt="brand-logo" src={LogoSrc} />
+                        <Link to={"/"}>
+                            <img className={classes.logo} alt="brand-logo" src={LogoSrc} />
+                        </Link>
+
                         <form
                             className={classes.form}
                             noValidate
@@ -157,6 +161,10 @@ export default function LoginForm() {
                                                 'password',
                                                 {
                                                     required: "Password is required.",
+                                                    minLength: {
+                                                        value: 6,
+                                                        message: "Password length at least 6 digits"
+                                                    }
                                                 })
                                         }
                                         disabled={hasLoginPending}
