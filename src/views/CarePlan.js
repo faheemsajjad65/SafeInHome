@@ -11,7 +11,7 @@ import CSRepresentative from '../components/carePlanAccordians/CSRepresentative'
 import CareCircle from '../components/carePlanAccordians/CareCircle'
 import Grid from "@material-ui/core/Grid";
 import WizardAccordion from "../components/WizardAccordion";
-import AssignedClientForm from "../components/AssignedClientForm";
+import AssignedClientForm from "../components/carePlanAccordians/AssignedClientForm";
 import Button from "@material-ui/core/Button";
 import {useForm} from "react-hook-form";
 import {makeStyles} from "@material-ui/core/styles";
@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     main: {
-        padding: theme.spacing(5, 4, 8),
-        width: "100%",
+        padding: "10px 10px", //theme.spacing(5, 4, 8),
+        width: "100%"
     },
     toolbar: {
         paddingRight: 24, // keep right padding when drawer closed
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     appBarSpacer: {
-        minHeight: "1em"
+        minHeight: "0.7em"
     },
     content: {
         flexGrow: 1,
@@ -139,13 +139,16 @@ function CarePlan() {
     };
 
     return (
-        <main className={classes.content}>
+            <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
-                <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                
+                <Grid container spacing={2}>
+                    
+                    <Grid item xs={3}>
                         <WizardAccordion activeStep={activeStep} setActiveStep={handleActiveStep}/>
                     </Grid>
-                    <Grid item xs={8}>
+
+                    <Grid item xs={9}>
                         <Paper className={classes.main} square>
                             {
                                 activeStep === "step1" && (
@@ -241,7 +244,6 @@ function CarePlan() {
                                         fullWidth
                                         size="large"
                                         variant="contained"
-
                                     >
                                         Next
                                     </Button>
