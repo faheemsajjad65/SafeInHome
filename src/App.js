@@ -47,7 +47,11 @@ function SihWizard (){
             <Routes>
                 <Route path="/" element={ <Welcome/> } />
                 <Route path="/settings" element={ <Authenticate> <Settings /> </Authenticate> } />
-                <Route path="/wizard/carePlan/:id" element={ <Authenticate> <CarePlan /> </Authenticate> } />
+                <Route path="/wizard/carePlan/:clientId">
+                    <Route path="" element={ <Authenticate> <CarePlan /> </Authenticate> } />
+                    <Route path=":carePlanId" element={ <Authenticate> <CarePlan /> </Authenticate> } />
+                </Route>
+                <Route path="*" element={ <h1>404 Page not found</h1> } />
             </Routes>
         </ContentWrapper>
     </Router>
@@ -61,7 +65,7 @@ function App() {
                     <SihWizard/>
             </StylesProvider>
         </StoreProvider>
-  );
+    );
 }
 
 export default App;

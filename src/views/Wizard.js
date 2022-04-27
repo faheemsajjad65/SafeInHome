@@ -11,8 +11,9 @@ export default function Wizard(){
 
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth); // get user data
+    
     useEffect(() => {
-        dispatch(getCarePlans(user.data.token))
+        dispatch(getCarePlans(user?.token))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch])
 
@@ -28,7 +29,7 @@ export default function Wizard(){
             
             <ClientSearch />
             
-            { clientList.length != 0 ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
+            { clientList.length ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
            
         </>
     )
