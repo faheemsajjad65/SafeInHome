@@ -34,7 +34,6 @@ export default function Menu() {
           </Link>
         </li>
 
-
       </ul>
     </div>
   )
