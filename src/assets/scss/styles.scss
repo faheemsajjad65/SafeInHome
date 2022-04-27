@@ -493,3 +493,10 @@ body {
 html, body, body >div {
   height: 100%;
 }
+
+.portlet {
+  background-color: $portlet-bg;
+  color: white;
+  margin: 16px;
+  padding: 16px;
+}
