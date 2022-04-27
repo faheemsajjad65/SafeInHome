@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) =>
 );
 const AssignedClientForm = forwardRef((props,ref) => {
     const { isDarkMode }  = useSelector((state) => state.settings);
+    const { user }  = useSelector((state) => state.auth);
     const classes = useStyles();
     const dispatch = useDispatch();
     const {clientId,reset,register,handleSubmit,onSubmit} = props;
@@ -36,23 +37,24 @@ const AssignedClientForm = forwardRef((props,ref) => {
 
     useEffect(() => {
         // async server request and fill up form
-
-        dispatch(getClients({userID:clientId})).then(response=>{
-            if(!!clientId && !!response && Array.isArray(response) && response.length>0){
-                const fetchedClient = response.find(item=>item.userID===clientId)
+        const userID = clientId ;
+        dispatch(getClients({userID})).then(response=>{
+            if(!!response && Array.isArray(response) && response.length>0){
+                const fetchedClient = response.find(item=>item.userID===parseInt(userID))
                 const clientData = {
-                    name: fetchedClient.name,
-                    address: fetchedClient.address,
-                    dob: fetchedClient.dob,
-                    email: fetchedClient.email,
+                    name: fetchedClient?.name ?? "",
+                    address: fetchedClient?.address ?? "",
+                    dob: fetchedClient?.dob ?? "",
+                    email: fetchedClient?.email ?? "",
                     phone: null,
                     group: null,
-                    clientComment: fetchedClient.clientComment
+                    clientComment: fetchedClient?.clientComment ?? ""
                 }
                 reset({...clientData})
             }
         })
-    }, [reset]);
+
+    }, [reset,user]);
 
     return (
         <>

@@ -18,6 +18,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import {useDispatch, useSelector} from "react-redux";
 import * as clientService from "../services/client.service";
+import {useParams} from "react-router-dom";
 
 const drawerWidth = 240;
 
