@@ -4,7 +4,7 @@ import Welcome from "./views/Welcome"
 import Settings from "./views/Settings"
 import StoreProvider from './store/StoreProvider';
 import {useSelector} from "react-redux";
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme as createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/core/styles';
 import variables from "./assets/scss/_variables.scss"
 import 'bootstrap/dist/css/bootstrap.css';
@@ -14,7 +14,7 @@ import CarePlan from './views/CarePlan';
 function Authenticate({children}){
     const { isLoggedIn } = useSelector(state => state.auth);
     return (
-        isLoggedIn ? children: <Navigate to="/" />
+        !isLoggedIn ? children: <Navigate to="/" />
     )
 }
 

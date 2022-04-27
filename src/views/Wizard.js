@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 
 export default function Wizard(){
-
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth); // get user data
     useEffect(() => {
