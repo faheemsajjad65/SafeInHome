@@ -69,7 +69,7 @@ export default function CarePlansList(props) {
           <TableBody>
             {carePlansList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row , index) => {
               return (
-                <TableRow onClick={() => navigate(`/wizard/carePlan/${row.userID}`) } hover role="checkbox" tabIndex={-1} key={index}>
+                <TableRow onClick={() => navigate(`/wizard/carePlan/${row?.userID}/${row?.carePlanID}`) } hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map(column => {
                     let counter = index + 1;
                     const value = row[column.id] ;

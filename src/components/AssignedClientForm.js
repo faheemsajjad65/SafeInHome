@@ -30,16 +30,16 @@ const AssignedClientForm = forwardRef((props,ref) => {
     const { isDarkMode }  = useSelector((state) => state.settings);
     const classes = useStyles();
     const dispatch = useDispatch();
-    const {reset,register,handleSubmit,onSubmit} = props;
+    const {clientId,reset,register,handleSubmit,onSubmit} = props;
 
     const inputVariant = (isDarkMode ? "filled" : "outlined");
 
     useEffect(() => {
         // async server request and fill up form
-        const userID = 12648;
-        dispatch(getClients({userID})).then(response=>{
-            if(response && Array.isArray(response) && response.length>0){
-                const fetchedClient = response.find(item=>item.userID===userID)
+
+        dispatch(getClients({userID:clientId})).then(response=>{
+            if(!!clientId && !!response && Array.isArray(response) && response.length>0){
+                const fetchedClient = response.find(item=>item.userID===clientId)
                 const clientData = {
                     name: fetchedClient.name,
                     address: fetchedClient.address,
