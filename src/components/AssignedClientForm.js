@@ -28,13 +28,13 @@ const useStyles = makeStyles((theme) =>
 const AssignedClientForm = forwardRef((props,ref) => {
     const { isDarkMode }  = useSelector((state) => state.settings);
     const classes = useStyles();
-    const {reset,register,handleSubmit,onSubmit} = props;
+    const {clientId,reset,register,handleSubmit,onSubmit} = props;
 
     const inputVariant = (isDarkMode ? "filled" : "outlined");
 
     useEffect(() => {
         // async server request and fill up form
-        ClientService.getClient("12648").then(response=>{
+        ClientService.getClient(clientId).then(response=>{
             const clientData = {
                 name: response.name,
                 address: response.address,
