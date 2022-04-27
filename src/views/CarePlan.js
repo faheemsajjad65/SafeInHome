@@ -162,13 +162,27 @@ function CarePlan() {
 
                             {
                                 activeStep === "step2" && (
-                                    <CareCircle />
+                                    <CareCircle
+                                        reset={reset}
+                                        register={register}
+                                        handleSubmit={handleSubmit}
+                                        onSubmit={handleFormSubmit}
+                                        ref={refSubmitButton}
+                                        clientId={urlParams?.clientId}
+                                    />
                                 )
                             }
 
                             {
                                 activeStep === "step3" && (
-                                    <CSRepresentative />
+                                    <CSRepresentative
+                                        reset={reset}
+                                        register={register}
+                                        handleSubmit={handleSubmit}
+                                        onSubmit={handleFormSubmit}
+                                        ref={refSubmitButton}
+                                        clientId={urlParams?.clientId}
+                                    />
                                 )
                             }
 
