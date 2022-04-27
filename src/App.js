@@ -51,7 +51,7 @@ function SihWizard (){
                     <Route path="" element={ <Authenticate> <CarePlan /> </Authenticate> } />
                     <Route path=":carePlanId" element={ <Authenticate> <CarePlan /> </Authenticate> } />
                 </Route>
-                <Route path="*" element={ <h1>404 Page not found</h1> } />
+                <Route path="*" element={ <Navigate to="/" /> } />
             </Routes>
         </ContentWrapper>
     </Router>
