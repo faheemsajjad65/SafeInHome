@@ -21,12 +21,12 @@ export default function Wizard(){
 
     return (
         <>
-            <div class="portlet">
-                <h4>Search For Client</h4>
+            <div className="portlet">
+                <Typography variant="h5">Search For Client</Typography>
                 <ClientSearch />
             </div>
-            <div class="portlet">
-                <h4>Clients</h4>
+            <div className="portlet">
+                <Typography variant="h5">Clients</Typography>
                 { clientList.length ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
             </div>
         </>
