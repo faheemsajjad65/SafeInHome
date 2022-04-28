@@ -29,29 +29,29 @@ export default function ClientSearch() {
 
         <div className="form-wrapper">
             <form onSubmit={handleSubmit(handleSearchForm)}>
-                <Grid container spacing={3}>
+                <Grid container spacing={5}>
                     <Grid item sm={2}>
                         <TextField {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" label="Last Name"/>
+                        <TextField {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" label="Street"/>
+                        <TextField {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" label="DOB" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("city")} type="text" id="city" name="city" placeholder="Enter City" label="City"/>
+                        <TextField {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined"/>
                     </Grid>
                 </Grid>
-                <Grid container spacing={3}>
-                    <Grid item sm={2}>
-                        <TextField {...register("state")} type="text" id="state" name="state" placeholder="Enter State" label="State"/>
+                <Grid container spacing={5}>
+                    <Grid item sm={4}>
+                        <TextField {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" label="Street" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" label="DOB"/>
+                        <TextField {...register("city")} type="text" id="city" name="city" placeholder="Enter City" label="City" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" label="Email"/>
+                        <TextField {...register("state")} type="text" id="state" name="state" placeholder="Enter State" label="State" variant="outlined"/>
                     </Grid>
                     <Grid item sm={12}>
                         <Button

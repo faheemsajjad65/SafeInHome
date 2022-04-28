@@ -51,7 +51,7 @@ body {
 
 .MuiInputLabel-root {
   color: rgba(229, 229, 229, 0.38) !important;
-  //transform: translate(2px, -30px) scale(0.75) !important;
+  transform: translate(2px, -20px) scale(0.75) !important;
   font-size: large !important;
 }
 
@@ -523,6 +523,7 @@ html, body, body >div {
 }
 
 .form-wrapper {
+    margin-top: 50px;
     .MuiFormControl-root {
         width: 100%;
     }
