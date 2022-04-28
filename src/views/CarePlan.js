@@ -232,8 +232,6 @@ function CarePlan() {
                             }
                         </Paper>
 
-
-
                         {/*navigation buttons*/}
 
                         <Paper className={classes.main} square>
