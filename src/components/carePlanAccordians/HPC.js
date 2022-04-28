@@ -9,8 +9,17 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Paper from "@material-ui/core/Paper";
+import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,173 +28,172 @@ const useStyles = makeStyles(theme => ({
           }
     },
     formControl: {
-        margin: theme.spacing(1),
         minWidth: "100%",
-      },
-      selectEmpty: {
+    },
+    selectEmpty: {
         marginTop: theme.spacing(2),
-      },
+    },
 }));
 
 export default function HPC() {
     const classes = useStyles();
 
+    const columns = [
+        { id: 'seq', label: 'Seq', minWidth: 170 },
+        { id: 'name', label: 'Name', minWidth: 100 },
+        { id: 'phone',label: 'Phone',minWidth: 170,align: 'center'},
+        { id: 'email',label: 'Email',minWidth: 170,align: 'center'},
+        { id: 'remove',label: 'Remove',minWidth: 170,align: 'center'},
+    ];
+
+
+    let selectedCaseManagers = [{
+        name:'faheem',
+        phone:'+923456789',
+        email:'faheem@gmail.com'
+    }];
+
   return (
     <>
-        <form
-            className={classes.form}
-            noValidate
-            onSubmit={() => {}}
-        >
-            <Grid container direction="row">
-                <Grid item xs={12}>
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="Name"
-                                    label="Name"
-                                    name="Name"
-                                    autoComplete="name"
-                                    autoFocus
-                                    placeholder="Name"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
+        <Paper>
+            <h5>HPC / Paid Backup</h5>
+            <div className="form-wrapper">
+                <Grid container spacing={3}>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="hpcname" name="hpcName" placeholder="Enter HPC Name" label="Name" variant="outlined" />
+                    </Grid>
 
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="organization"
-                                    label="Organization"
-                                    name="organization"
-                                    autoComplete="organization"
-                                    placeholder="Organization"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="organization" name="organization" placeholder="HPC Organization" label="Organization" variant="outlined" />
+                    </Grid>
 
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="email" 
-                                    label="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    placeholder="Email"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}> 
-                                <FormControl variant="filled" className={classes.formControl} style={{'margin':"40px 0 0 0"}}>
-                                    <InputLabel id="demo-simple-select-filled-label">Relationship</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-filled-label"
-                                        id="demo-simple-select-filled"
-                                        >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Father</MenuItem>
-                                        <MenuItem value={20}>Mother</MenuItem>
-                                        <MenuItem value={30}>Syster</MenuItem>
-                                        <MenuItem value={30}>Brother</MenuItem>
-                                        <MenuItem value={30}>Uncle</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <FormControl variant="filled" className={classes.formControl} style={{'margin':"40px 0 0 0"}}>
-                                    <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-filled-label"
-                                        id="demo-simple-select-filled"
-                                        >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Mobile</MenuItem>
-                                        <MenuItem value={20}>Home</MenuItem>
-                                        <MenuItem value={30}>Office</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-                                >
-                                    Add
-                                </Button>
-                            </Grid>
-                        </Grid>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="email" name="email" placeholder="Enter Email Number" label="Email" variant="outlined" />
+                    </Grid>
                 </Grid>
 
-            </Grid>
+                <Grid container spacing={3}>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="phone1" name="phone1" placeholder="(xxx)xxx-xxxx" label="Phone 1" variant="outlined" />
+                    </Grid>
+                    <Grid item sm={3}>
+                        <FormControl variant="outlined" className={classes.formControl} >
+                            <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-filled-label"
+                                id="demo-simple-select-filled"
+                                name="phoneType1"
+                                >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Mobile</MenuItem>
+                                <MenuItem value={20}>Home</MenuItem>
+                                <MenuItem value={30}>Office</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
 
-            <button hidden={true} ref={()=> {}} type={"submit"} />
-        </form>
+                <Grid container spacing={3}>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="phone2" name="phone2" placeholder="(xxx)xxx-xxxx" label="Phone 2" variant="outlined" />
+                    </Grid>
+                    <Grid item sm={3}>
+                        <FormControl variant="outlined" className={classes.formControl} >
+                            <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-filled-label"
+                                id="demo-simple-select-filled"
+                                
+                                >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Mobile</MenuItem>
+                                <MenuItem value={20}>Home</MenuItem>
+                                <MenuItem value={30}>Office</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+
+                <Grid container spacing={2}>
+                    <Grid item sm={2}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<SearchIcon />}
+                            onClick={() => {}}
+                        >
+                            Search
+                        </Button>
+                    </Grid>
+                    
+                    <Grid item sm={4}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<AddIcon />}
+                            onClick={() => {}}
+                        >
+                            New HPC
+                        </Button>
+                    </Grid>
+
+                </Grid>
+            </div>
+        </Paper>
+
+        <Paper>
+            <h5>Assigned HPC</h5>
+            <Grid item sm={12}>
+                <TableContainer className={classes.container}>
+                    <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                        {columns.map((column) => (
+                            <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                            >
+                            {column.label}
+                            </TableCell>
+                        ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {selectedCaseManagers.map((row , index) => {
+                        return (
+                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                            {columns.map(column => {
+                                let counter = index + 1;
+                                let value = row[column.id] ;
+
+                                if(column.id == 'seq')
+                                    value = counter;
+                                else if (column.id == 'remove')
+                                    value = "-";
+                                
+                                return (
+                                <TableCell key={column.id} align={column.align}>
+                                    {value}
+                                </TableCell>
+                                );
+                            })}
+                            </TableRow>
+                        );
+                        })}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+        </Paper>
+
+        <button hidden={true} ref={()=> {}} type={"submit"} />
     </>
   )
 }

@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Guardian() {
+export default function CallTree() {
     const classes = useStyles();
 
     const columns = [
@@ -57,34 +57,9 @@ export default function Guardian() {
   return (
     <>
         <Paper>
-            <h5>Guardian</h5>
+            <h5>Call Tree</h5>
             <div className="form-wrapper">
                 
-                        {/* <Grid container spacing={2}>
-                            <Grid item sm={3}>
-                                <FormControlLabel
-                                    control={
-                                    <Checkbox
-                                        name="checkedB"
-                                        color="primary"
-                                    />
-                                    }
-                                    label="Own Guardian"
-                                />
-                            </Grid>
-
-                            <Grid item sm={3}>
-                                <FormControlLabel
-                                    control={
-                                    <Checkbox
-                                        name="checkedB"
-                                        color="primary"
-                                    />
-                                    }
-                                    label="Guardian Service"
-                                />
-                            </Grid>
-                        </Grid> */}
 
                         <Grid container spacing={3}>
                             <Grid item sm={3}>
@@ -95,12 +70,13 @@ export default function Guardian() {
                                 <TextField type="text" id="lastName" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined" />
                             </Grid>
 
-                            <Grid item sm={3}>
-                                <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined" />
-                            </Grid>
+                            
                         </Grid>
 
                         <Grid container spacing={3}>
+                            <Grid item sm={3}>
+                                <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined" />
+                            </Grid>
                             <Grid item sm={3}>
                                 <FormControl variant="outlined" className={classes.formControl} >
                                     <InputLabel id="demo-simple-select-filled-label">Relationship</InputLabel>
@@ -119,28 +95,10 @@ export default function Guardian() {
                                     </Select>
                                 </FormControl>
                             </Grid>
-
-                            <Grid item sm={3}>
-                                <FormControl variant="outlined" className={classes.formControl} >
-                                    <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-filled-label"
-                                        id="demo-simple-select-filled"
-                                        
-                                        >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Mobile</MenuItem>
-                                        <MenuItem value={20}>Home</MenuItem>
-                                        <MenuItem value={30}>Office</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
-                            <Grid item sm={3}>
+                            <Grid item sm={2}>
                                 <Button
                                     type="submit"
                                     variant="contained"
@@ -148,11 +106,11 @@ export default function Guardian() {
                                     startIcon={<SearchIcon />}
                                     
                                 >
-                                    Search Guardian
+                                    Search
                                 </Button>
                             </Grid>
                             
-                            <Grid item sm={3}>
+                            <Grid item sm={4}>
                                 <Button
                                     type="submit"
                                     variant="contained"
@@ -160,7 +118,7 @@ export default function Guardian() {
                                     startIcon={<AddIcon />}
                                     
                                 >
-                                    New Guardian
+                                    New Natural Support
                                 </Button>
                             </Grid>
 
@@ -172,7 +130,7 @@ export default function Guardian() {
         </Paper>
 
         <Paper>
-            <h5>Assigned Guardians</h5>
+            <h5>Call Tree Contact(s)</h5>
             
             <Grid container spacing={1}>
                 <Grid item sm={12}>
