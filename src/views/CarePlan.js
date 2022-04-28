@@ -142,7 +142,7 @@ function CarePlan() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 
-                <Grid container spacing={2}>
+                <Grid container spacing={2} className="h-100">
                     
                     <Grid item xs={3}>
                         <WizardAccordion activeStep={activeStep} setActiveStep={handleActiveStep}/>
