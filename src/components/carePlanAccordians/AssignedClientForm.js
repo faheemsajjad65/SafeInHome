@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import {createStyles, makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {getClients} from "../actions/client";
+import {getClients} from "../../actions/client";
 
 
 const useStyles = makeStyles((theme) =>
