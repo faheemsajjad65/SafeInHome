@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react'
-import { useParams } from 'react-router-dom'
 import { withBaseLayout } from '../layouts/Base'
 import HealthInformation from '../components/carePlanAccordians/HealthInformation'
 import Technology from '../components/carePlanAccordians/Technology'
@@ -17,6 +16,9 @@ import Button from "@material-ui/core/Button";
 import {useForm} from "react-hook-form";
 import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import {useDispatch, useSelector} from "react-redux";
+import * as clientService from "../services/client.service";
+import {useParams} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -118,7 +120,17 @@ function CarePlan() {
     };
 
     const handleFormSubmit = (data) => {
-        console.log("submitted data ",data)
+        // console.log("submitted data ",data)
+        const payload = {
+            userID: urlParams?.clientId,
+            clientComment: data.clientComment
+        }
+        clientService.updateClientNote(payload)
+            .then(()=>{
+                // success
+                return Promise.resolve();
+            })
+
     };
 
     const triggerSubmit = () => {
@@ -150,13 +162,27 @@ function CarePlan() {
 
                             {
                                 activeStep === "step2" && (
-                                    <CareCircle />
+                                    <CareCircle
+                                        reset={reset}
+                                        register={register}
+                                        handleSubmit={handleSubmit}
+                                        onSubmit={handleFormSubmit}
+                                        ref={refSubmitButton}
+                                        clientId={urlParams?.clientId}
+                                    />
                                 )
                             }
 
                             {
                                 activeStep === "step3" && (
-                                    <CSRepresentative />
+                                    <CSRepresentative
+                                        reset={reset}
+                                        register={register}
+                                        handleSubmit={handleSubmit}
+                                        onSubmit={handleFormSubmit}
+                                        ref={refSubmitButton}
+                                        clientId={urlParams?.clientId}
+                                    />
                                 )
                             }
 

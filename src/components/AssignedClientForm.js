@@ -3,8 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import {createStyles, makeStyles} from "@material-ui/core/styles";
-import {useSelector} from "react-redux";
-import ClientService from "../services/client.service";;
+import {useDispatch, useSelector} from "react-redux";
+import {getClients} from "../actions/client";
+
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -27,26 +28,33 @@ const useStyles = makeStyles((theme) =>
 );
 const AssignedClientForm = forwardRef((props,ref) => {
     const { isDarkMode }  = useSelector((state) => state.settings);
+    const { user }  = useSelector((state) => state.auth);
     const classes = useStyles();
+    const dispatch = useDispatch();
     const {clientId,reset,register,handleSubmit,onSubmit} = props;
 
     const inputVariant = (isDarkMode ? "filled" : "outlined");
 
     useEffect(() => {
         // async server request and fill up form
-        ClientService.getClient(clientId).then(response=>{
-            const clientData = {
-                name: response.name,
-                address: response.address,
-                dob: response.dob,
-                email: response.email,
-                phone: null,
-                group: null,
-                note: response.clientComment
+        const userID = clientId ;
+        dispatch(getClients({userID})).then(response=>{
+            if(!!response && Array.isArray(response) && response.length>0){
+                const fetchedClient = response.find(item=>item.userID===parseInt(userID))
+                const clientData = {
+                    name: fetchedClient?.name ?? "",
+                    address: fetchedClient?.address ?? "",
+                    dob: fetchedClient?.dob ?? "",
+                    email: fetchedClient?.email ?? "",
+                    phone: null,
+                    group: null,
+                    clientComment: fetchedClient?.clientComment ?? ""
+                }
+                reset({...clientData})
             }
-            reset({...clientData})
         })
-    }, [reset]);
+
+    }, [reset,user]);
 
     return (
         <>
@@ -251,15 +259,15 @@ const AssignedClientForm = forwardRef((props,ref) => {
                         <Grid container direction={"column"} >
                             <Grid item xs={12}>
                                 <TextField
-                                    {...register('note')}
+                                    {...register('clientComment')}
                                     disabled={false}
                                     aria-disabled={false}
                                     margin="normal"
                                     fullWidth
-                                    id="note"
+                                    id="clientComment"
                                     label="Note"
-                                    name="note"
-                                    autoComplete="note"
+                                    name="clientComment"
+                                    autoComplete="clientComment"
                                     autoFocus
                                     multiline
                                     minRows={10}
