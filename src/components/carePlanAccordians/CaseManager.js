@@ -9,21 +9,29 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
+import Paper from "@material-ui/core/Paper";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-          }
-    },
+
     formControl: {
         margin: theme.spacing(1),
         minWidth: "100%",
-      },
-      selectEmpty: {
+    },
+    selectEmpty: {
         marginTop: theme.spacing(2),
-      },
+    },
+    main:{
+        width:"100%",
+        padding:"10px",
+        marginTop:"15px"
+    }
 }));
 
 export default function CaseManager() {
@@ -34,6 +42,21 @@ export default function CaseManager() {
         // show dialog 
     }
 
+    const columns = [
+        { id: 'seq', label: 'Seq', minWidth: 170 },
+        { id: 'name', label: 'Name', minWidth: 100 },
+        { id: 'phone',label: 'Phone',minWidth: 170,align: 'center'},
+        { id: 'email',label: 'Email',minWidth: 170,align: 'center'},
+        { id: 'remove',label: 'Remove',minWidth: 170,align: 'center'},
+    ];
+
+
+    const selectedCaseManagers = [{
+        name:'faheem',
+        phone:'+923456789',
+        email:'faheem@gmail.com'
+    }];
+
   return (
     <>
         <form
@@ -42,8 +65,8 @@ export default function CaseManager() {
             onSubmit={() => {}}
         >
             <Grid container direction="row">
-                <Grid item xs={12}>
-                    
+                <Paper className={classes.main} square>
+                    <Grid item xs={12}>
                         <Grid container direction={"row"} spacing={3}>
                             <Grid item xs={4}>
                                 <TextField
@@ -192,7 +215,53 @@ export default function CaseManager() {
                                 </Button>
                             </Grid>
                         </Grid>
-                </Grid>
+                    </Grid>
+                </Paper>
+
+                <Paper className={classes.main} square>
+                    <Grid item xs={12}>
+                        <TableContainer className={classes.container}>
+                            <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ minWidth: column.minWidth }}
+                                    >
+                                    {column.label}
+                                    </TableCell>
+                                ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {selectedCaseManagers.map((row , index) => {
+                                return (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                    {columns.map(column => {
+                                        let counter = index + 1;
+                                        let value = row[column.id] ;
+
+                                        if(column.id == 'seq')
+                                            value = counter;
+                                        else if (column.id == 'remove')
+                                            value = "-";
+                                        
+                                        return (
+                                        <TableCell key={column.id} align={column.align}>
+                                            {value}
+                                        </TableCell>
+                                        );
+                                    })}
+                                    </TableRow>
+                                );
+                                })}
+                            </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Paper>
 
             </Grid>
 
