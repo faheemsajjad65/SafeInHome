@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {useDispatch, useSelector} from "react-redux";
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from "@material-ui/core/Paper";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import SearchIcon from '@material-ui/icons/Search';
-import AddIcon from '@material-ui/icons/Add';
+
+import {
+    Select,
+    Grid,
+    TextField,
+    FormControl,
+    InputLabel,
+    Button,
+    MenuItem,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
+} from '@material-ui/core'
+
+import {
+    Search,
+    Add
+} from '@material-ui/icons/'
+
+
+import {toggleModal} from "../../actions/modal";
+import Modal from "../shared/Modal";
 
 // import {addCaseManager} from '../../actions/client';
 
@@ -34,7 +44,8 @@ const useStyles = makeStyles(theme => ({
 export default function CaseManager() {
 
     const classes = useStyles();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const {isModalOpen} = useSelector(state => state.appModal);
 
     const columns = [
         { id: 'seq', label: 'Seq', minWidth: 170 },
@@ -75,6 +86,10 @@ export default function CaseManager() {
         // })
     }
 
+    const handleModal = () => {
+        dispatch(toggleModal(!isModalOpen));   
+    }
+
     const showCaseManagersList = (e) =>  {
         e.preventDefault()
         
@@ -83,6 +98,8 @@ export default function CaseManager() {
         console.log(formData);
         
         // dispatch(getAllCaseManagers(formData));
+
+        dispatch(toggleModal(!isModalOpen));
     }
 
   return (
@@ -135,7 +152,7 @@ export default function CaseManager() {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            startIcon={<SearchIcon />}
+                            startIcon={<Search />}
                             onClick={showCaseManagersList}
                         >
                             Search
@@ -147,7 +164,7 @@ export default function CaseManager() {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            startIcon={<AddIcon />}
+                            startIcon={<Add />}
                             onClick={addNewCaseManager}
                         >
                             New Case Manager
@@ -204,6 +221,58 @@ export default function CaseManager() {
                 </TableContainer>
             </Grid>
         </Paper>
+
+        { isModalOpen && (
+            <Modal
+                title={"Case Manager(s)"}
+                open={isModalOpen}
+                onClose={handleModal}
+                onSubmit={()=>{}}
+                children={
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{ minWidth: column.minWidth }}
+                                >
+                                {column.label}
+                                </TableCell>
+                            ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {selectedCaseManagers.map((row , index) => {
+                            return (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                {columns.map(column => {
+                                    let counter = index + 1;
+                                    let value = row[column.id] ;
+
+                                    if(column.id == 'seq')
+                                        value = counter;
+                                    else if (column.id == 'remove')
+                                        value = "-";
+                                    
+                                    return (
+                                    <TableCell key={column.id} align={column.align}>
+                                        {value}
+                                    </TableCell>
+                                    );
+                                })}
+                                </TableRow>
+                            );
+                            })}
+                        </TableBody>
+                        </Table>
+                    </TableContainer>
+                        
+                }
+            />
+        )}
         
 
         <button hidden={true} ref={()=> {}} type={"submit"} />

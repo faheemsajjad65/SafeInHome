@@ -1,25 +1,34 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+
+
+import React, { useState } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
 import {useDispatch, useSelector} from "react-redux";
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from "@material-ui/core/Paper";
-import SearchIcon from '@material-ui/icons/Search';
-import AddIcon from '@material-ui/icons/Add';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+
+import {
+    Select,
+    Grid,
+    TextField,
+    FormControl,
+    InputLabel,
+    Button,
+    MenuItem,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
+} from '@material-ui/core'
+
+import {
+    Search,
+    Add
+} from '@material-ui/icons/'
+
+// import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles(theme => ({
@@ -145,7 +154,7 @@ export default function Guardian() {
                                     type="submit"
                                     variant="contained"
                                     color="secondary"
-                                    startIcon={<SearchIcon />}
+                                    startIcon={<Search />}
                                     
                                 >
                                     Search Guardian
@@ -157,7 +166,7 @@ export default function Guardian() {
                                     type="submit"
                                     variant="contained"
                                     color="secondary"
-                                    startIcon={<AddIcon />}
+                                    startIcon={<Add />}
                                     
                                 >
                                     New Guardian
