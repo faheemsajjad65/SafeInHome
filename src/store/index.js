@@ -4,6 +4,7 @@ import AuthReducer from "../reducers/auth";
 import SettingReducer from "../reducers/settings";
 import CarePlanReducer from '../reducers/carePlan'
 import ClientReducer from '../reducers/client'
+import ModalReducer from '../reducers/modal'
 import {createLogger} from 'redux-logger';
 
 const logger = createLogger({
@@ -22,7 +23,8 @@ export default function configureStore() {
         auth: AuthReducer,
         settings: SettingReducer,
         carePlan: CarePlanReducer,
-        clients: ClientReducer
+        clients: ClientReducer,
+        appModal: ModalReducer
     })
 
     const rootReducer = (state, action) => {

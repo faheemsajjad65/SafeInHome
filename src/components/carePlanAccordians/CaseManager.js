@@ -18,6 +18,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
+import {toggleModal} from "../../actions/modal";
+import Modal from "../shared/Modal";
 
 const useStyles = makeStyles(theme => ({
 
@@ -36,10 +38,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function CaseManager() {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const {isModalOpen} = useSelector(state => state.appModal);
 
     const showCaseManagersList = () => {
         console.log("i am here");
         // show dialog 
+    }
+
+    const handleModal = () => {
+        dispatch(toggleModal(!isModalOpen));
+        // add case manager
     }
 
     const columns = [
@@ -56,6 +65,8 @@ export default function CaseManager() {
         phone:'+923456789',
         email:'faheem@gmail.com'
     }];
+
+    console.log("isModalOpenisModalOpenisModalOpen ",isModalOpen)
 
   return (
     <div className="form-wrapper">
@@ -114,11 +125,10 @@ export default function CaseManager() {
                         
                         <Grid item sm={3}>
                             <Button
-                                type="submit"
                                 variant="contained"
                                 color="secondary"
                                 startIcon={<AddIcon />}
-                                onClick={()=>showCaseManagersList()}
+                                onClick={handleModal}
                             >
                                 New Case Manager
                             </Button>
@@ -127,6 +137,16 @@ export default function CaseManager() {
                     </Grid>
 
             </Paper>
+
+            { isModalOpen && (
+                <Modal
+                    title={"New Case Manager"}
+                    open={isModalOpen}
+                    onClose={handleModal}
+                    onSubmit={()=>{}}
+                    children={<div>Content here</div>}
+                />
+            )}
 
             <Paper className={classes.main} square>
                 <Grid item xs={12}>
