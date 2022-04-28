@@ -1,3 +1,4 @@
+import { TextField } from '@material-ui/core';
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux';
@@ -16,26 +17,24 @@ export default function ClientSearch() {
     return (
         <div>
             <form onSubmit={handleSubmit(handleSearchForm)}>
-                First Name
-                <input {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" />
+                <TextField {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" label="First Name"/>
 
-                Last Name
-                <input {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" />
+                <TextField {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" label="Last Name"/>
 
-                Street
-                <input {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" />
+        
+                <TextField {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" label="Street"/>
 
-                City
-                <input {...register("city")} type="text" id="city" name="city" placeholder="Enter City" />
+                
+                <TextField {...register("city")} type="text" id="city" name="city" placeholder="Enter City" label="City"/>
 
-                State
-                <input {...register("state")} type="text" id="state" name="state" placeholder="Enter State" />
+                
+                <TextField {...register("state")} type="text" id="state" name="state" placeholder="Enter State" label="State"/>
 
-                DOB
-                <input {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" />
+                
+                <TextField {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" label="DOB"/>
 
-                Email
-                <input {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" />
+                
+                <TextField {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" label="Email"/>
 
                 <button >Search</button>
             </form>
