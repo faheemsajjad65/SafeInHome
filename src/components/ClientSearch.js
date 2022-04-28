@@ -20,9 +20,9 @@ export default function ClientSearch() {
     const dispatch = useDispatch();
 
     const handleSearchForm = (formData) => {
-        console.log("formData");
-        console.log("formData");
-        console.log("formData");
+        console.log("Searched Fields");
+        console.log("Searched Fields");
+        console.log("Searched Fields");
         console.log(formData);
         dispatch(getClients(formData))
     }

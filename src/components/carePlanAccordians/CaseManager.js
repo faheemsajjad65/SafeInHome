@@ -16,12 +16,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles(theme => ({
 
     formControl: {
-        margin: theme.spacing(1),
         minWidth: "100%",
     },
     selectEmpty: {
@@ -58,215 +58,122 @@ export default function CaseManager() {
     }];
 
   return (
-    <>
-        <form
-            className={classes.form}
-            noValidate
-            onSubmit={() => {}}
-        >
-            <Grid container direction="row">
-                <Paper className={classes.main} square>
-                    <Grid item xs={12}>
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    name="firstName"
-                                    autoComplete="name"
-                                    autoFocus
-                                    placeholder="First Name"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lastName"
-                                    placeholder="Last Name"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
-
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="email"
-                                    label="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    placeholder="Email"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
+    <div className="form-wrapper">
+        <form onSubmit={() => {}}>
+            <Paper className={classes.main} square>
+                
+                    <Grid container spacing={3}>
+                        <Grid item sm={3}>
+                            <TextField type="text" id="firstName" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined"/>
                         </Grid>
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="phone" 
-                                    label="Phone"
-                                    name="phone"
-                                    autoComplete="phone"
-                                    placeholder="Phone"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
-                            </Grid>
 
-                            <Grid item xs={4}>
-                                <FormControl variant="filled" className={classes.formControl} style={{'margin':"40px 0 0 0"}}>
-                                    <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-filled-label"
-                                        id="demo-simple-select-filled"
-                                        >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Mobile</MenuItem>
-                                        <MenuItem value={20}>Home</MenuItem>
-                                        <MenuItem value={30}>Office</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-                                    onClick={()=>showCaseManagersList()}
-
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-                                >
-                                    Add
-                                </Button>
-                            </Grid>
+                        <Grid item sm={3}>
+                            <TextField type="text" id="lastName" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined"/>
                         </Grid>
+
+                        <Grid item sm={3}>
+                            <TextField type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined"/>
+                        </Grid>
+
                     </Grid>
-                </Paper>
+                    <Grid container spacing={3}>
+                        <Grid item sm={3}>
+                            <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined"/>
+                        </Grid>
 
-                <Paper className={classes.main} square>
-                    <Grid item xs={12}>
-                        <TableContainer className={classes.container}>
-                            <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
+                        <Grid item sm={3}>
+                            <FormControl variant="outlined" className={classes.formControl} >
+                                <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-filled-label"
+                                    id="demo-simple-select-filled"
                                     >
-                                    {column.label}
-                                    </TableCell>
-                                ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {selectedCaseManagers.map((row , index) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    {columns.map(column => {
-                                        let counter = index + 1;
-                                        let value = row[column.id] ;
-
-                                        if(column.id == 'seq')
-                                            value = counter;
-                                        else if (column.id == 'remove')
-                                            value = "-";
-                                        
-                                        return (
-                                        <TableCell key={column.id} align={column.align}>
-                                            {value}
-                                        </TableCell>
-                                        );
-                                    })}
-                                    </TableRow>
-                                );
-                                })}
-                            </TableBody>
-                            </Table>
-                        </TableContainer>
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={10}>Mobile</MenuItem>
+                                    <MenuItem value={20}>Home</MenuItem>
+                                    <MenuItem value={30}>Office</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                     </Grid>
-                </Paper>
 
-            </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item sm={2}>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<SearchIcon />}
+                                onClick={()=>showCaseManagersList()}
+                            >
+                                Search
+                            </Button>
+                        </Grid>
+                        <Grid item sm={3}>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<AddIcon />}
+                                onClick={()=>showCaseManagersList()}
+                            >
+                                New Case Manager
+                            </Button>
+                        </Grid>
 
+                    </Grid>
+
+            </Paper>
+
+            <Paper className={classes.main} square>
+                <Grid item xs={12}>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{ minWidth: column.minWidth }}
+                                >
+                                {column.label}
+                                </TableCell>
+                            ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {selectedCaseManagers.map((row , index) => {
+                            return (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                {columns.map(column => {
+                                    let counter = index + 1;
+                                    let value = row[column.id] ;
+
+                                    if(column.id == 'seq')
+                                        value = counter;
+                                    else if (column.id == 'remove')
+                                        value = "-";
+                                    
+                                    return (
+                                    <TableCell key={column.id} align={column.align}>
+                                        {value}
+                                    </TableCell>
+                                    );
+                                })}
+                                </TableRow>
+                            );
+                            })}
+                        </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
+            </Paper>
+            
             <button hidden={true} ref={()=> {}} type={"submit"} />
         </form>
-    </>
+    </div>
   )
 }
