@@ -56,7 +56,7 @@ export default function ClientSearch() {
                     <Grid item sm={12}>
                         <Button
                             variant="contained"
-                            color="default"
+                            color="secondary"
                             className={classes.button}
                             startIcon={<SearchIcon />}
                         >

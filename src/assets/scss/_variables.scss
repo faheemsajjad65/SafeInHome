@@ -19,9 +19,11 @@ $onPrimary:  #ffffff !default;
 
 $brand: #85276B;
 $primaryColor: #85276B;
+$secondaryColor: #2D7558;
 
 :export {
     primary: $primaryColor;
+    secondary: $secondaryColor;
 }
 
 // Color Variables
