@@ -50,7 +50,7 @@ export default function ClientsList(props) {
 
 
   return (
-    <Paper className={classes.root}>
+    <>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -95,7 +95,7 @@ export default function ClientsList(props) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+    </>
   );
 }
 

@@ -19,9 +19,11 @@ $onPrimary:  #ffffff !default;
 
 $brand: #85276B;
 $primaryColor: #85276B;
+$secondaryColor: #2D7558;
 
 :export {
     primary: $primaryColor;
+    secondary: $secondaryColor;
 }
 
 // Color Variables
@@ -64,3 +66,6 @@ $navbar-brand-size: 40px;
 //Custom state colors
 
 $success: #2DB77B;
+$portlet-bg: #212632;
+$color-table-header: #425B76;
+$color-table-body: #2E3F52;

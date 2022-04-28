@@ -22,9 +22,11 @@ export default function Navbar() {
             <a className="navbar-brand" href="#">
               <img alt="brand-logo" src={LogoSrc} width="30" height="24"/>
             </a>
-            <div className={"d-flex flex-row"}>
+            <div className={"d-flex flex-row navbar-right"}>
               <Avatar className="user-image" alt="User Image" src={AvatarSrc}/>
-              <ExitToAppIcon style={{margin:"0.4em"}} titleAccess={"Logout"} onClick={handleLogout}/>
+              <div class="ms-auto">
+                <ExitToAppIcon style={{margin:"0.4em"}} titleAccess={"Logout"} onClick={handleLogout}/>
+              </div>
             </div>
           </div>
         </nav>
