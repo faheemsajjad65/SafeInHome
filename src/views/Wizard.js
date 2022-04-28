@@ -5,7 +5,8 @@ import ClientsList from "../components/ClientsList"
 import { useDispatch } from 'react-redux';
 import { getCarePlans } from '../actions/carePlan'
 import { useSelector } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+//import Typography from '@material-ui/core/Typography';
 
 export default function Wizard(){
     const dispatch = useDispatch();
@@ -21,6 +22,10 @@ export default function Wizard(){
 
     return (
         <>
+            <div className="page-title">
+                Information<span className="desc">Description text here</span> 
+                <div className="ms-auto"><CloseIcon /></div>
+            </div>
             <div className="portlet">
                 <h5>Search For Client</h5>
                 <ClientSearch />
