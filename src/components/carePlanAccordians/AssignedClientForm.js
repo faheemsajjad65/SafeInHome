@@ -33,7 +33,7 @@ const AssignedClientForm = forwardRef((props,ref) => {
     const dispatch = useDispatch();
     const {clientId,reset,register,handleSubmit,onSubmit} = props;
 
-    const inputVariant = (isDarkMode ? "filled" : "outlined");
+    const inputVariant = (isDarkMode ? "outlined" : "outlined");
 
     useEffect(() => {
         // async server request and fill up form
@@ -169,7 +169,7 @@ const AssignedClientForm = forwardRef((props,ref) => {
                                         margin="normal"
                                         fullWidth
                                         id="email"
-                                        label="email"
+                                        label="Email"
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
@@ -265,14 +265,14 @@ const AssignedClientForm = forwardRef((props,ref) => {
                                     margin="normal"
                                     fullWidth
                                     id="clientComment"
-                                    label="Note"
+                                    label="Notes"
                                     name="clientComment"
                                     autoComplete="clientComment"
                                     autoFocus
                                     multiline
                                     minRows={10}
                                     variant={inputVariant}
-                                    placeholder="Note"
+                                    placeholder="Notes"
                                     InputLabelProps={{ shrink: true }}
                                     inputProps={{
                                         sx: {

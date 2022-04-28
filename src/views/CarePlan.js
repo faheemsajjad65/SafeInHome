@@ -85,12 +85,12 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     appBarSpacer: {
-        minHeight: "0.7em"
+        minHeight: "16px"
     },
     content: {
         flexGrow: 1,
         height: '100%',
-        overflow: 'hidden',
+        //overflow: 'hidden',
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -142,13 +142,13 @@ function CarePlan() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 
-                <Grid container spacing={2}>
+                <Grid container className="content-cp">
                     
                     <Grid item xs={3}>
                         <WizardAccordion activeStep={activeStep} setActiveStep={handleActiveStep}/>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item xs={9} className="content-steps">
                         <Paper className={classes.main} square>
                             {
                                 activeStep === "step1" && (
@@ -234,13 +234,12 @@ function CarePlan() {
 
                         {/*navigation buttons*/}
 
-                        <Paper className={classes.main} square>
+                        <Paper className={`${classes.main} content-toolbar`} square>
                             <Grid justifyContent={"flex-end"} container direction={"row"} spacing={2}>
                                 <Grid item>
                                     <Button
                                         color="primary"
                                         fullWidth
-                                        size="large"
                                         variant="contained"
                                     >
                                         Next
@@ -250,7 +249,6 @@ function CarePlan() {
                                     <Button
                                         color="primary"
                                         fullWidth
-                                        size="large"
                                         type="submit"
                                         variant="contained"
                                         onClick={triggerSubmit}
@@ -262,7 +260,6 @@ function CarePlan() {
                                     <Button
                                         color="primary"
                                         fullWidth
-                                        size="large"
                                         type="submit"
                                         variant="contained"
                                     >

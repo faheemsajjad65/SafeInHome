@@ -75,6 +75,24 @@ label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-webki
 
 //MUI Overrides
 
+.MuiPaper-root {
+    background-color: $color-portlet;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 0;
+
+    &.MuiAccordion-root {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.MuiButton-root {
+    padding: 10px 26px;
+    min-width: 112px;
+    line-height: 1.5;
+}
+
 .MuiButton-containedSizeLarge {
   padding: 19px 22px;
 }
@@ -95,8 +113,12 @@ label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-webki
   border: 1px solid rgba(209, 210, 211, 0.22);
 }
 
-//MUI Input
+.MuiOutlinedInput-notchedOutline,
+.MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(209, 210, 211, 0.22);
+}
 
+//MUI Input
 .MuiOutlinedInput-input {
     padding: 10px 14px;
 }
@@ -563,13 +585,6 @@ html, body, body >div {
   height: 100%;
 }
 
-.portlet {
-  background-color: $portlet-bg;
-  color: white;
-  margin-bottom: 16px;
-  padding: 16px;
-}
-
 .form-wrapper {
     margin-top: 50px;
     .MuiFormControl-root {
@@ -593,5 +608,36 @@ html, body, body >div {
     }
     .MuiSvgIcon-root {
         cursor: pointer;
+    }
+}
+
+.wizard {
+    background-color: #1E2A36;
+    height: 100%;
+
+    .MuiAccordion-root {
+        border-radius: 0 !important;
+    }
+    .MuiAccordionDetails-root {
+        background-color: rgba(46, 63, 82, 0.5);
+    }
+}
+
+.content-cp {
+    height: calc(100% - 16px);
+
+    .wizard {
+        margin-left: -16px;
+        margin-top: -16px;
+        height: calc(100% + 16px);
+    }
+
+    .content-steps {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .content-toolbar {
+         background-color: transparent;
     }
 }
