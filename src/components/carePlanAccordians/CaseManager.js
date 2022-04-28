@@ -23,11 +23,12 @@ import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
-        minWidth: "100%",
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
-    }
+    },
 }));
 
 export default function CaseManager() {
@@ -124,7 +125,7 @@ export default function CaseManager() {
                                 <MenuItem value={20}>Home</MenuItem>
                                 <MenuItem value={30}>Office</MenuItem>
                             </Select>
-                        </FormControl>
+                        </FormControl> 
                     </Grid>
                 </Grid>
 
@@ -156,6 +157,8 @@ export default function CaseManager() {
                 </Grid>
             </div>
         </Paper>
+
+        
         <Paper>
             <h5>Assigned Manager(s)</h5>
             <Grid item sm={12}>

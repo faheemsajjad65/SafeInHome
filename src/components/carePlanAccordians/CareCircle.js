@@ -11,6 +11,9 @@ import { useSelector } from 'react-redux';
 import CaseManager from './CaseManager'
 import Guardian from './Guardian';
 import HPC from './HPC';
+import CountyBoard from './CountyBoard';
+import NaturalSupport from './NaturalSupport';
+import CallTree from './CallTree';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -103,15 +106,16 @@ const CareCircle = forwardRef((props,ref) => {
         <HPC />
       </TabPanel>
 
-
       <TabPanel value={value} index={3}>
-        County Board
+        <CountyBoard />
       </TabPanel>
+
       <TabPanel value={value} index={4}>
-        Natural Support
+        <NaturalSupport />
       </TabPanel>
+
       <TabPanel value={value} index={5}>
-        Call Tree
+        <CallTree />
       </TabPanel>
     </div>
   );
