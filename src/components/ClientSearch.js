@@ -20,10 +20,7 @@ export default function ClientSearch() {
     const dispatch = useDispatch();
 
     const handleSearchForm = (formData) => {
-        console.log("Searched Fields");
-        console.log("Searched Fields");
-        console.log("Searched Fields");
-        console.log(formData);
+        formData.dob = !formData.dob ? null : new Date(formData.dob)
         dispatch(getClients(formData))
     }
 
