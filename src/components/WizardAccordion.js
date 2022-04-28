@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 export default function WizardAccordion({activeStep,setActiveStep}) {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className={`${classes.root} wizard`}>
             {
                 AccordionList.map((item,idx)=>{
                     return(

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getCarePlans } from '../actions/carePlan'
 import { useSelector } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
+import Paper from "@material-ui/core/Paper";
 //import Typography from '@material-ui/core/Typography';
 
 export default function Wizard(){
@@ -26,14 +27,14 @@ export default function Wizard(){
                 Information<span className="desc">Description text here</span> 
                 <div className="ms-auto"><CloseIcon /></div>
             </div>
-            <div className="portlet">
+            <Paper>
                 <h5>Search For Client</h5>
                 <ClientSearch />
-            </div>
-            <div className="portlet">
-                <h5>Clients</h5>
+            </Paper>
+            <Paper>
+                <h5 class="mb-3">Clients</h5>
                 { clientList.length ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
-            </div>
+            </Paper>
         </>
     )
 }
