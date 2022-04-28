@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
@@ -19,28 +19,21 @@ import TableRow from '@material-ui/core/TableRow';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 
-const useStyles = makeStyles(theme => ({
+// import {addCaseManager} from '../../actions/client';
 
+const useStyles = makeStyles(theme => ({
     formControl: {
         minWidth: "100%",
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
-    },
-    main:{
-        width:"100%",
-        padding:"10px",
-        marginTop:"15px"
     }
 }));
 
 export default function CaseManager() {
-    const classes = useStyles();
 
-    const showCaseManagersList = () => {
-        console.log("i am here");
-        // show dialog 
-    }
+    const classes = useStyles();
+    // const dispatch = useDispatch();
 
     const columns = [
         { id: 'seq', label: 'Seq', minWidth: 170 },
@@ -51,130 +44,169 @@ export default function CaseManager() {
     ];
 
 
-    const selectedCaseManagers = [{
+    let selectedCaseManagers = [{
         name:'faheem',
         phone:'+923456789',
         email:'faheem@gmail.com'
     }];
 
+    const [formData, updateFormData] = useState(null);
+
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+            [e.target.name]: e.target.value.trim()
+        });
+    }
+
+    const addNewCaseManager = (e) => {
+        e.preventDefault()
+        
+        console.log("formData for new case manager");
+        console.log("formData for new case manager");
+        console.log(formData);
+        
+        // dispatch(addCaseManager(formData))
+        // or // we can also get from store
+        // .then(addedCaseManager => {
+        //     selectedCaseManagers = {...addedCaseManager};
+        // })
+    }
+
+    const showCaseManagersList = (e) =>  {
+        e.preventDefault()
+        
+        console.log("formData for search case manager");
+        console.log("formData for search case manager");
+        console.log(formData);
+        
+        // dispatch(getAllCaseManagers(formData));
+    }
+
   return (
-    <div className="form-wrapper">
-        <form onSubmit={() => {}}>
-            <Paper className={classes.main} square>
-                
-                    <Grid container spacing={3}>
-                        <Grid item sm={3}>
-                            <TextField type="text" id="firstName" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined"/>
-                        </Grid>
-
-                        <Grid item sm={3}>
-                            <TextField type="text" id="lastName" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined"/>
-                        </Grid>
-
-                        <Grid item sm={3}>
-                            <TextField type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined"/>
-                        </Grid>
-
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item sm={3}>
-                            <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined"/>
-                        </Grid>
-
-                        <Grid item sm={3}>
-                            <FormControl variant="outlined" className={classes.formControl} >
-                                <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-filled-label"
-                                    id="demo-simple-select-filled"
-                                    >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Mobile</MenuItem>
-                                    <MenuItem value={20}>Home</MenuItem>
-                                    <MenuItem value={30}>Office</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
+    <>
+        <div className="portlet">
+            <h5>Case Manager</h5>
+            <div className="form-wrapper">
+                <Grid container spacing={3}>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="firstName" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined" onChange={handleChange} />
                     </Grid>
 
-                    <Grid container spacing={2}>
-                        <Grid item sm={2}>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="secondary"
-                                startIcon={<SearchIcon />}
-                                onClick={()=>showCaseManagersList()}
-                            >
-                                Search
-                            </Button>
-                        </Grid>
-                        
-                        <Grid item sm={3}>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="secondary"
-                                startIcon={<AddIcon />}
-                                onClick={()=>showCaseManagersList()}
-                            >
-                                New Case Manager
-                            </Button>
-                        </Grid>
-
+                    <Grid item sm={3}>
+                        <TextField type="text" id="lastName" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined" onChange={handleChange} />
                     </Grid>
 
-            </Paper>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined" onChange={handleChange} />
+                    </Grid>
 
-            <Paper className={classes.main} square>
-                <Grid item xs={12}>
-                    <TableContainer className={classes.container}>
-                        <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                key={column.id}
-                                align={column.align}
-                                style={{ minWidth: column.minWidth }}
-                                >
-                                {column.label}
-                                </TableCell>
-                            ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {selectedCaseManagers.map((row , index) => {
-                            return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                {columns.map(column => {
-                                    let counter = index + 1;
-                                    let value = row[column.id] ;
-
-                                    if(column.id == 'seq')
-                                        value = counter;
-                                    else if (column.id == 'remove')
-                                        value = "-";
-                                    
-                                    return (
-                                    <TableCell key={column.id} align={column.align}>
-                                        {value}
-                                    </TableCell>
-                                    );
-                                })}
-                                </TableRow>
-                            );
-                            })}
-                        </TableBody>
-                        </Table>
-                    </TableContainer>
                 </Grid>
-            </Paper>
+                <Grid container spacing={3}>
+                    <Grid item sm={3}>
+                        <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined" onChange={handleChange} />
+                    </Grid>
+
+                    <Grid item sm={3}>
+                        <FormControl variant="outlined" className={classes.formControl} >
+                            <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-filled-label"
+                                id="demo-simple-select-filled"
+                                onChange={handleChange}
+                                >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Mobile</MenuItem>
+                                <MenuItem value={20}>Home</MenuItem>
+                                <MenuItem value={30}>Office</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+
+                <Grid container spacing={2}>
+                    <Grid item sm={2}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<SearchIcon />}
+                            onClick={showCaseManagersList}
+                        >
+                            Search
+                        </Button>
+                    </Grid>
+                    
+                    <Grid item sm={3}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<AddIcon />}
+                            onClick={addNewCaseManager}
+                        >
+                            New Case Manager
+                        </Button>
+                    </Grid>
+
+                </Grid>
+            </div>
+        </div>
+
+        <div className="portlet">
+            <h5>Assigned Manager(s)</h5>
             
-            <button hidden={true} ref={()=> {}} type={"submit"} />
-        </form>
-    </div>
+                <Grid container spacing={1}>
+                    <Grid item sm={12}>
+                        <TableContainer className={classes.container}>
+                            <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ minWidth: column.minWidth }}
+                                    >
+                                    {column.label}
+                                    </TableCell>
+                                ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {selectedCaseManagers.map((row , index) => {
+                                return (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                    {columns.map(column => {
+                                        let counter = index + 1;
+                                        let value = row[column.id] ;
+
+                                        if(column.id == 'seq')
+                                            value = counter;
+                                        else if (column.id == 'remove')
+                                            value = "-";
+                                        
+                                        return (
+                                        <TableCell key={column.id} align={column.align}>
+                                            {value}
+                                        </TableCell>
+                                        );
+                                    })}
+                                    </TableRow>
+                                );
+                                })}
+                            </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Grid>
+            
+        </div>
+
+        <button hidden={true} ref={()=> {}} type={"submit"} />
+    </>
   )
 }
