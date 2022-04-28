@@ -111,6 +111,7 @@ export default function CaseManager() {
                                 Search
                             </Button>
                         </Grid>
+                        
                         <Grid item sm={3}>
                             <Button
                                 type="submit"
