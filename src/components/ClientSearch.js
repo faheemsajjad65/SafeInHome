@@ -29,7 +29,7 @@ export default function ClientSearch() {
 
         <div className="form-wrapper">
             <form onSubmit={handleSubmit(handleSearchForm)}>
-                <Grid container spacing={5}>
+                <Grid container spacing={3}>
                     <Grid item sm={2}>
                         <TextField {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined"/>
                     </Grid>
@@ -43,7 +43,7 @@ export default function ClientSearch() {
                         <TextField {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined"/>
                     </Grid>
                 </Grid>
-                <Grid container spacing={5}>
+                <Grid container spacing={3}>
                     <Grid item sm={4}>
                         <TextField {...register("street")} type="text" id="street" name="street" placeholder="Enter Street" label="Street" variant="outlined"/>
                     </Grid>

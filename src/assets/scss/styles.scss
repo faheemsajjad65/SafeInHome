@@ -102,6 +102,10 @@ body {
   .user-image {
     border: 2px solid $success;
   }
+
+  .navbar-right {
+      flex: 1;
+  }
 }
 
 
@@ -533,7 +537,6 @@ html, body, body >div {
     margin-top: 50px;
     .MuiFormControl-root {
         width: 100%;
-        padding-bottom: 20px;
-    }
-    
+        padding-bottom: 34px;
+    } 
 }
