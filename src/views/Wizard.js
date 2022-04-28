@@ -21,6 +21,9 @@ export default function Wizard(){
 
     return (
         <>
+            <div class="page-title">
+                Information<span class="desc">Description text here</span> 
+            </div>
             <div className="portlet">
                 <h5>Search For Client</h5>
                 <ClientSearch />
