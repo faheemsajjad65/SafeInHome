@@ -20,6 +20,10 @@ export default function ClientSearch() {
     const dispatch = useDispatch();
 
     const handleSearchForm = (formData) => {
+        console.log("formData");
+        console.log("formData");
+        console.log("formData");
+        console.log(formData);
         dispatch(getClients(formData))
     }
 
@@ -55,6 +59,7 @@ export default function ClientSearch() {
                     </Grid>
                     <Grid item sm={12}>
                         <Button
+                            type="submit"
                             variant="contained"
                             color="secondary"
                             className={classes.button}

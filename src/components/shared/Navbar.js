@@ -24,7 +24,7 @@ export default function Navbar() {
             </a>
             <div className={"d-flex flex-row navbar-right"}>
               <Avatar className="user-image" alt="User Image" src={AvatarSrc}/>
-              <div class="ms-auto">
+              <div className="ms-auto">
                 <ExitToAppIcon style={{margin:"0.4em"}} titleAccess={"Logout"} onClick={handleLogout}/>
               </div>
             </div>
