@@ -55,6 +55,24 @@ body {
     border-radius: 5px;
 }
 
+.MuiInputBase-input::-moz-placeholder,
+.MuiInputBase-input:-ms-input-placeholder,
+.MuiInputBase-input::-webkit-input-placeholder {
+    opacity: 1 !important;
+    color: $color-input-placeholder;
+}
+// .MuiInputBase-root {
+//     &:hover {
+//         .MuiInputBase-input {
+//             border: 1px solid $primary;
+//         }
+//     }
+// }
+
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-webkit-input-placeholder {
+    opacity: 0.5 !important;
+}
+
 //MUI Overrides
 
 .MuiButton-containedSizeLarge {
