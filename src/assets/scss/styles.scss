@@ -50,14 +50,21 @@ body {
 }
 
 .MuiInputLabel-root {
-  color: rgba(229, 229, 229, 0.38) !important;
+  //color: rgba(229, 229, 229, 0.38) !important;
   transform: translate(2px, -20px) scale(0.75) !important;
   font-size: large !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(209, 210, 211, 0.22);
   top: 0px !important;
+  background: rgba(209, 210, 211, 0.07);
+  border: 1px solid rgba(209, 210, 211, 0.22);
+}
+
+//MUI Input
+
+.MuiOutlinedInput-input {
+    padding: 10px 14px;
 }
 
 //MUI Table
@@ -526,5 +533,7 @@ html, body, body >div {
     margin-top: 50px;
     .MuiFormControl-root {
         width: 100%;
+        padding-bottom: 20px;
     }
+    
 }
