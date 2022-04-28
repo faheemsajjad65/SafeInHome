@@ -37,7 +37,7 @@ const AssignedClientForm = forwardRef((props,ref) => {
 
     useEffect(() => {
         // async server request and fill up form
-        const userID = clientId ;
+        const userID = parseInt(clientId) ;
         dispatch(getClients({userID})).then(response=>{
             if(!!response && Array.isArray(response) && response.length>0){
                 const fetchedClient = response.find(item=>item.userID===parseInt(userID))

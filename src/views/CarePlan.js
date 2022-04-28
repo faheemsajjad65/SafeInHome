@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 function CarePlan() {
     const urlParams = useParams();
     const classes = useStyles();
-    const [activeStep, setActiveStep] = useState(false);
+    const [activeStep, setActiveStep] = useState("step1");
 
     const refSubmitButton = useRef(null);
     const {reset,register,handleSubmit} = useForm();
@@ -122,7 +122,7 @@ function CarePlan() {
     const handleFormSubmit = (data) => {
         // console.log("submitted data ",data)
         const payload = {
-            userID: urlParams?.clientId,
+            userID: urlParams?.clientId ? parseInt(urlParams.clientId) : null,
             clientComment: data.clientComment
         }
         clientService.updateClientNote(payload)
