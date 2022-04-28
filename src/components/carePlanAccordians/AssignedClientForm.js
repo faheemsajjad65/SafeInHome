@@ -33,7 +33,7 @@ const AssignedClientForm = forwardRef((props,ref) => {
     const dispatch = useDispatch();
     const {clientId,reset,register,handleSubmit,onSubmit} = props;
 
-    const inputVariant = (isDarkMode ? "filled" : "outlined");
+    const inputVariant = (isDarkMode ? "outlined" : "outlined");
 
     useEffect(() => {
         // async server request and fill up form
