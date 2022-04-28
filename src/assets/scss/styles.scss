@@ -50,9 +50,9 @@ body {
 }
 
 .MuiInputLabel-root {
-  color: rgba(229, 229, 229, 0.38) !important;
-  transform: translate(2px, -30px) scale(0.75) !important;
-  font-size: large !important;
+//   color: rgba(229, 229, 229, 0.38) !important;
+//   transform: translate(2px, -30px) scale(0.75) !important;
+//   font-size: large !important;
 }
 
 .MuiOutlinedInput-notchedOutline {
@@ -60,7 +60,15 @@ body {
   top: 0px !important;
 }
 
+//MUI Table
+.MuiTableCell-root {
+    padding: 8px 12px;
+}
 
+.MuiTableCell-stickyHeader {
+    background-color: $color-table-header;
+    box-shadow: 2px 0px 0px #5F6873;
+}
 
 //Topbar
 
@@ -499,4 +507,11 @@ html, body, body >div {
   color: white;
   margin: 16px;
   padding: 16px;
+}
+
+.form-wrapper {
+    .MuiFormControl-root {
+        margin: 12px 24px;
+        width: 25ch;
+    }
 }

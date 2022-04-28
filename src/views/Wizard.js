@@ -24,6 +24,9 @@ export default function Wizard(){
             <div class="portlet">
                 <h4>Search For Client</h4>
                 <ClientSearch />
+            </div>
+            <div class="portlet">
+                <h4>Clients</h4>
                 { clientList.length ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
             </div>
         </>

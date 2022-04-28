@@ -15,9 +15,9 @@ export default function ClientSearch() {
     }
 
     return (
-        <div>
+        <div class="form-wrapper">
             <form onSubmit={handleSubmit(handleSearchForm)}>
-                <TextField {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" label="First Name"/>
+                <TextField {...register("FirstName")} type="text" id="fname" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined"/>
 
                 <TextField {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" label="Last Name"/>
 

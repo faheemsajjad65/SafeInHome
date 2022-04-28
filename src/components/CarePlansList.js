@@ -50,7 +50,7 @@ export default function CarePlansList(props) {
 
 
   return (
-    <Paper className={classes.root}>
+    <>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -95,6 +95,6 @@ export default function CarePlansList(props) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+    </>
   );
 }
