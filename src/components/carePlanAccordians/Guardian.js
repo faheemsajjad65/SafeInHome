@@ -11,40 +11,60 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Paper from "@material-ui/core/Paper";
+import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-          }
-    },
     formControl: {
-        margin: theme.spacing(1),
         minWidth: "100%",
-      },
-      selectEmpty: {
+    },
+    selectEmpty: {
         marginTop: theme.spacing(2),
-      },
+    },
+    main:{
+        width:"100%",
+        padding:"10px",
+        marginTop:"15px"
+    }
 }));
 
 export default function Guardian() {
     const classes = useStyles();
 
+    const columns = [
+        { id: 'seq', label: 'Seq', minWidth: 170 },
+        { id: 'name', label: 'Name', minWidth: 100 },
+        { id: 'phone',label: 'Phone',minWidth: 170,align: 'center'},
+        { id: 'email',label: 'Email',minWidth: 170,align: 'center'},
+        { id: 'remove',label: 'Remove',minWidth: 170,align: 'center'},
+    ];
+
+
+    let selectedCaseManagers = [{
+        name:'faheem',
+        phone:'+923456789',
+        email:'faheem@gmail.com'
+    }];
+
   return (
     <>
-        <form
-            className={classes.form}
-            noValidate
-            onSubmit={() => {}}
-        >
-            <Grid container direction="row">
-                <Grid item xs={12}>
-                        <Grid container direction={"row"} spacing={2}>
-                            <Grid item xs={4} >
+        <div className="portlet">
+            <h5>Guardian</h5>
+            <div className="form-wrapper">
+                
+                        {/* <Grid container spacing={2}>
+                            <Grid item sm={3}>
                                 <FormControlLabel
                                     control={
                                     <Checkbox
-                                        
                                         name="checkedB"
                                         color="primary"
                                     />
@@ -53,11 +73,10 @@ export default function Guardian() {
                                 />
                             </Grid>
 
-                            <Grid item xs={4} >
+                            <Grid item sm={3}>
                                 <FormControlLabel
                                     control={
                                     <Checkbox
-                                        
                                         name="checkedB"
                                         color="primary"
                                     />
@@ -65,94 +84,25 @@ export default function Guardian() {
                                     label="Guardian Service"
                                 />
                             </Grid>
-                        </Grid>
-                    
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    name="firstName"
-                                    autoComplete="name"
-                                    autoFocus
-                                    placeholder="First Name"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
+                        </Grid> */}
+
+                        <Grid container spacing={3}>
+                            <Grid item sm={3}>
+                                <TextField type="text" id="firstName" name="FirstName" placeholder="Enter First Name" label="First Name" variant="outlined" />
                             </Grid>
 
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lastName"
-                                    
-                                    placeholder="Last Name"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
+                            <Grid item sm={3}>
+                                <TextField type="text" id="lastName" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined" />
                             </Grid>
 
-                            <Grid item xs={4}>
-                                <TextField
-                                    variant="filled"
-                                    margin="normal"
-                                    fullWidth
-                                    id="phone" 
-                                    label="Phone"
-                                    name="phone"
-                                    autoComplete="phone"
-                                    
-                                    placeholder="Phone"
-                                    InputLabelProps={{ shrink: true }}
-                                    inputProps={{
-                                        sx: {
-                                            "&::placeholder": {
-                                                color: "inherit"
-                                            }
-                                        }
-                                    }}
-                                    sx={{
-                                        "& .MuiOutlinedInput-root": {
-                                            color: "inherit"
-                                        }
-                                    }}
-                                />
+                            <Grid item sm={3}>
+                                <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined" />
                             </Grid>
                         </Grid>
 
-                        <Grid container direction={"row"} spacing={3}>
-                            <Grid item xs={4}> 
-                                <FormControl variant="filled" className={classes.formControl} style={{'margin':"40px 0 0 0"}}>
+                        <Grid container spacing={3}>
+                            <Grid item sm={3}>
+                                <FormControl variant="outlined" className={classes.formControl} >
                                     <InputLabel id="demo-simple-select-filled-label">Relationship</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-filled-label"
@@ -170,12 +120,13 @@ export default function Guardian() {
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={4}>
-                                <FormControl variant="filled" className={classes.formControl} style={{'margin':"40px 0 0 0"}}>
+                            <Grid item sm={3}>
+                                <FormControl variant="outlined" className={classes.formControl} >
                                     <InputLabel id="demo-simple-select-filled-label">Phone Type</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-filled-label"
                                         id="demo-simple-select-filled"
+                                        
                                         >
                                         <MenuItem value="">
                                             <em>None</em>
@@ -186,36 +137,89 @@ export default function Guardian() {
                                     </Select>
                                 </FormControl>
                             </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-
-                            <Grid item xs={2} style={{'margin-top':"35px"}}>
-                                <Button
-                                    color="default"
-                                    fullWidth
-                                    size="large"
-                                    variant="contained"
-                                >
-                                    Add
-                                </Button>
-                            </Grid>
                         </Grid>
+
+                        <Grid container spacing={2}>
+                            <Grid item sm={3}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<SearchIcon />}
+                                    
+                                >
+                                    Search Guardian
+                                </Button>
+                            </Grid>
+                            
+                            <Grid item sm={3}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="secondary"
+                                    startIcon={<AddIcon />}
+                                    
+                                >
+                                    New Guardian
+                                </Button>
+                            </Grid>
+
+                        </Grid>
+
+                    <button hidden={true} ref={()=> {}} type={"submit"} />
+               
+            </div>
+        </div>
+
+        <div className="portlet">
+            <h5>Assigned Guardians</h5>
+            
+                <Grid container spacing={1}>
+                    <Grid item sm={12}>
+                        <TableContainer className={classes.container}>
+                            <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ minWidth: column.minWidth }}
+                                    >
+                                    {column.label}
+                                    </TableCell>
+                                ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {selectedCaseManagers.map((row , index) => {
+                                return (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                    {columns.map(column => {
+                                        let counter = index + 1;
+                                        let value = row[column.id] ;
+
+                                        if(column.id == 'seq')
+                                            value = counter;
+                                        else if (column.id == 'remove')
+                                            value = "-";
+                                        
+                                        return (
+                                        <TableCell key={column.id} align={column.align}>
+                                            {value}
+                                        </TableCell>
+                                        );
+                                    })}
+                                    </TableRow>
+                                );
+                                })}
+                            </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
                 </Grid>
-
-            </Grid>
-
-            <button hidden={true} ref={()=> {}} type={"submit"} />
-        </form>
+            
+        </div>
     </>
   )
 }
