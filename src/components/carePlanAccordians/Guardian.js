@@ -56,7 +56,7 @@ export default function Guardian() {
 
   return (
     <>
-        <div className="portlet">
+        <Paper>
             <h5>Guardian</h5>
             <div className="form-wrapper">
                 
@@ -169,57 +169,56 @@ export default function Guardian() {
                     <button hidden={true} ref={()=> {}} type={"submit"} />
                
             </div>
-        </div>
+        </Paper>
 
-        <div className="portlet">
+        <Paper>
             <h5>Assigned Guardians</h5>
             
-                <Grid container spacing={1}>
-                    <Grid item sm={12}>
-                        <TableContainer className={classes.container}>
-                            <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                    >
-                                    {column.label}
-                                    </TableCell>
-                                ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {selectedCaseManagers.map((row , index) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    {columns.map(column => {
-                                        let counter = index + 1;
-                                        let value = row[column.id] ;
+            <Grid container spacing={1}>
+                <Grid item sm={12}>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{ minWidth: column.minWidth }}
+                                >
+                                {column.label}
+                                </TableCell>
+                            ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {selectedCaseManagers.map((row , index) => {
+                            return (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                {columns.map(column => {
+                                    let counter = index + 1;
+                                    let value = row[column.id] ;
 
-                                        if(column.id == 'seq')
-                                            value = counter;
-                                        else if (column.id == 'remove')
-                                            value = "-";
-                                        
-                                        return (
-                                        <TableCell key={column.id} align={column.align}>
-                                            {value}
-                                        </TableCell>
-                                        );
-                                    })}
-                                    </TableRow>
-                                );
+                                    if(column.id == 'seq')
+                                        value = counter;
+                                    else if (column.id == 'remove')
+                                        value = "-";
+                                    
+                                    return (
+                                    <TableCell key={column.id} align={column.align}>
+                                        {value}
+                                    </TableCell>
+                                    );
                                 })}
-                            </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
+                                </TableRow>
+                            );
+                            })}
+                        </TableBody>
+                        </Table>
+                    </TableContainer>
                 </Grid>
-            
-        </div>
+            </Grid>
+        </Paper>
     </>
   )
 }

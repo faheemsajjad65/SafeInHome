@@ -86,7 +86,7 @@ export default function CaseManager() {
 
   return (
     <>
-        <div className="portlet">
+        <Paper>
             <h5>Case Manager</h5>
             <div className="form-wrapper">
                 <Grid container spacing={3}>
@@ -103,6 +103,7 @@ export default function CaseManager() {
                     </Grid>
 
                 </Grid>
+                
                 <Grid container spacing={3}>
                     <Grid item sm={3}>
                         <TextField type="text" id="phone" name="phone" placeholder="Enter Phone Number" label="Phone" variant="outlined" onChange={handleChange} />
@@ -140,7 +141,7 @@ export default function CaseManager() {
                         </Button>
                     </Grid>
                     
-                    <Grid item sm={3}>
+                    <Grid item sm={4}>
                         <Button
                             type="submit"
                             variant="contained"
@@ -154,57 +155,53 @@ export default function CaseManager() {
 
                 </Grid>
             </div>
-        </div>
-
-        <div className="portlet">
+        </Paper>
+        <Paper>
             <h5>Assigned Manager(s)</h5>
-            
-                <Grid container spacing={1}>
-                    <Grid item sm={12}>
-                        <TableContainer className={classes.container}>
-                            <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                    >
-                                    {column.label}
-                                    </TableCell>
-                                ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {selectedCaseManagers.map((row , index) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    {columns.map(column => {
-                                        let counter = index + 1;
-                                        let value = row[column.id] ;
+            <Grid item sm={12}>
+                <TableContainer className={classes.container}>
+                    <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                        {columns.map((column) => (
+                            <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                            >
+                            {column.label}
+                            </TableCell>
+                        ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {selectedCaseManagers.map((row , index) => {
+                        return (
+                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                            {columns.map(column => {
+                                let counter = index + 1;
+                                let value = row[column.id] ;
 
-                                        if(column.id == 'seq')
-                                            value = counter;
-                                        else if (column.id == 'remove')
-                                            value = "-";
-                                        
-                                        return (
-                                        <TableCell key={column.id} align={column.align}>
-                                            {value}
-                                        </TableCell>
-                                        );
-                                    })}
-                                    </TableRow>
+                                if(column.id == 'seq')
+                                    value = counter;
+                                else if (column.id == 'remove')
+                                    value = "-";
+                                
+                                return (
+                                <TableCell key={column.id} align={column.align}>
+                                    {value}
+                                </TableCell>
                                 );
-                                })}
-                            </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
-                </Grid>
-            
-        </div>
+                            })}
+                            </TableRow>
+                        );
+                        })}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+        </Paper>
+        
 
         <button hidden={true} ref={()=> {}} type={"submit"} />
     </>

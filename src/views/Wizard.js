@@ -27,12 +27,12 @@ export default function Wizard(){
                 Information<span className="desc">Description text here</span> 
                 <div className="ms-auto"><CloseIcon /></div>
             </div>
-            <Paper>
+            <Paper style={{"margin-bottom":"16px"}}>
                 <h5>Search For Client</h5>
                 <ClientSearch />
             </Paper>
-            <Paper>
-                <h5 class="mb-3">Clients</h5>
+            <Paper style={{"margin-bottom":"16px"}}>
+                <h5 className="mb-3">Clients</h5>
                 { clientList.length ? <ClientsList list={clientList} /> : <CarePlansList list = {carePlans} />  }
             </Paper>
         </>
