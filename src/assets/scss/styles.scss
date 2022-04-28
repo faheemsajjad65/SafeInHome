@@ -39,6 +39,22 @@ body {
  background-color: $brand;
 }
 
+::-webkit-scrollbar {
+    width: 0.6em;
+    height: 0.6em;
+    opacity: 1;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: $gray-600;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: $gray-200;
+    border-radius: 5px;
+}
+
 //MUI Overrides
 
 .MuiButton-containedSizeLarge {
@@ -521,6 +537,8 @@ body {
   padding: 0 16px;
   width: 100%;
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 html, body, body >div {
