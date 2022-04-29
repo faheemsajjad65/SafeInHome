@@ -197,7 +197,7 @@ export default function LoginForm() {
                                 </Grid>
                                 <Button
                                     aria-disabled={hasLoginPending}
-                                    className={`${classes.btnSubmit} btn-brand`}
+                                    className={classes.btnSubmit}
                                     color="primary"
                                     disabled={hasLoginPending}
                                     fullWidth

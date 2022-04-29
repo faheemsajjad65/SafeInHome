@@ -6,6 +6,8 @@ import { getClients } from '../actions/client'
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -38,7 +40,15 @@ export default function ClientSearch() {
                         <TextField {...register("LastName")} type="text" id="lname" name="LastName" placeholder="Enter Last Name" label="Last Name" variant="outlined"/>
                     </Grid>
                     <Grid item sm={2}>
-                        <TextField {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" label="DOB" variant="outlined"/>
+                        <TextField {...register("dob")} type="text" id="dob" name="dob" placeholder="Enter DOB" label="DOB" variant="outlined"
+                        InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <DateRangeIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
                     </Grid>
                     <Grid item sm={2}>
                         <TextField {...register("email")} type="text" id="email" name="email" placeholder="Enter Email" label="Email" variant="outlined"/>
