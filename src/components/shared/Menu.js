@@ -5,7 +5,7 @@ export default function Menu() {
   return (
     <div className="app-sidebar">
       
-      <ul className="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+      <ul className="navbar-nav sidebar sidebar-dark">
         
         <li className="nav-item active">
           <Link

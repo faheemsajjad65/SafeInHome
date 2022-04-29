@@ -1,0 +1,71 @@
+//MUI Overrides
+
+//MUI Paper
+.MuiPaper-root {
+    background-color: $color-portlet;
+    // margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 0;
+
+    &.MuiAccordion-root {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+//MUI Button
+.MuiButton-root {
+    padding: 10px 26px;
+    min-width: 112px;
+    line-height: 1.5;
+}
+
+.MuiButton-containedSizeLarge {
+    padding: 19px 22px;
+}
+
+//MUI Input
+.MuiOutlinedInput-input {
+    padding: 10px 14px;
+}
+
+.MuiInputLabel-root {
+    //color: rgba(229, 229, 229, 0.38) !important;
+    transform: translate(2px, -20px) scale(0.75) !important;
+    font-size: large !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    top: 0px !important;
+    background: rgba(209, 210, 211, 0.07);
+    border: 1px solid rgba(209, 210, 211, 0.22);
+}
+
+.MuiOutlinedInput-notchedOutline,
+.MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline {
+    border: 1px solid rgba(209, 210, 211, 0.22);
+}
+
+.MuiTextField-root.MuiFormControl-marginNormal {
+    margin-top: 40px !important;
+}
+
+//MUI Table
+.MuiTableCell-root {
+    padding: 8px 12px;
+    border-left: 1px solid #5f6873;
+    border-bottom: 0;
+}
+
+.MuiTableCell-stickyHeader {
+    background-color: $color-table-header;
+    box-shadow: 2px 0px 0px #5F6873;
+}
+
+.MuiTableRow-root {
+    background-color: $color-table-body;
+
+    &.MuiTableRow-hover:hover {
+        background-color: lighten($color-table-body, 2%);
+    }
+}
