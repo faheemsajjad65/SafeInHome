@@ -35,6 +35,14 @@
     font-size: large !important;
 }
 
+.MuiOutlinedInput-root {
+    &:hover {
+        .MuiOutlinedInput-notchedOutline {
+            border-color:rgba(209, 210, 211, 0.22);
+        }
+    }
+}
+
 .MuiOutlinedInput-notchedOutline {
     top: 0px !important;
     background: rgba(209, 210, 211, 0.07);
